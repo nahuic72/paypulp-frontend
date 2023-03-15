@@ -1,17 +1,12 @@
 import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
 import MainApp from './Components/MainApp'
-import Business from './Pages/Public/Business'
-import Dashboard from './Pages/Dashboard'
-import Developer from './Pages/Public/Developer'
-import FakeStore from './Pages/FakeStore'
-import Help from './Pages/Public/Help'
-import Home from './Pages/Public/Home'
-import Login from './Pages/Public/Login'
+import Dashboard from './Pages/Private/Dashboard'
+import Login from './Pages/Public/LoginPage'
 import PaymentView from './Pages/PaymentView.jsx'
-import Personal from './Pages/Personal'
 import Signup from './Pages/Public/Signup'
 import UserProfile from './Pages/UserProfile'
-import './Styles/App.css'
+import 'Styles/App.css'
+import 'Styles/Buttons.css'
 import QrPage from 'Pages/QrPage'
 
 const checkForToken = () => {
@@ -34,30 +29,12 @@ const router = createBrowserRouter([
     element: <MainApp />,
     // errorElement: <ErrorPage />,
     children: [
-      {
-        path: '',
-        element: <Home />,
-      },
-      {
-        path: 'personal',
-        element: <Personal />,
-      },
-      {
-        path: 'business',
-        element: <Business />,
-      },
-      {
-        path: 'developer',
-        element: <Developer />,
-      },
+      // -TEST-
       {
         path: 'qrpage',
         element: <QrPage />,
       },
-      {
-        path: 'help',
-        element: <Help />,
-      },
+      // ------
       {
         path: 'login',
         loader: loginLoader,
@@ -88,10 +65,6 @@ const router = createBrowserRouter([
     path: 'gateway/:productUuid',
     loader: ({ params }) => (params = { ...params, isOnGateway: true }),
     element: <PaymentView />,
-  },
-  {
-    path: 'fakestore',
-    element: <FakeStore />,
   },
 ])
 
