@@ -8,27 +8,8 @@
 }
 
 :root {
-  --bg-dirty: hsl(0, 0%, 93%);
-  --bg-primary: hsl(0, 0%, 100%);
-  --bg-secondary: #0245a3ff;
-  --error: #fda2a2;
-  --font-primary: #000000ff;
-  --font-secondary: #fefefe;
-  --light-blue: rgb(51, 96, 159);
-  --light: #ffffff;
-  --mid: #d5d5d5;
-  --text-dark: hsl(0, 0%, 23%);
-  --text-light: hsl(0, 0%, 35%);
+  --text-primary: #000000;
 }
-
-/* :root .dark-mode {
-  --bg-primary: #0245a3ff;
-  --bg-secondary: #fefefe;
-  --font-primary: #fefefe;
-  --font-secondary: #000000ff;
-  --dark: #07689f;
-  --darkest: #05486e;
-} */
 
 span, div, p {
   color: inherit;
@@ -43,81 +24,19 @@ span, div, p {
 }
 
 main {
-  background-color: var(--bg-dirty);
   display: flex;
   flex-direction: column;
   height: 100vh;
-  max-width: 100vw;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  padding: 1rem;
 }
-
-
-.round-btns {
-  border-radius: 1rem;
-  cursor: pointer;
-  font-size: 1.2rem;
-  height: fit-content;
-  margin: 0.5rem 0;
-  padding: 0.5rem .25rem;
-  transition: all 0.2s ease-in;
-}
-
-.round-btns:disabled {
-  border: 1px solid var(--mid);
-  color: var(--mid);
-}
-
-.btn-on-main {
-  border: 1px solid var(--bg-secondary);
-  width: 100px;
-}
-
-.blue-btn {
-  background-color: var(--bg-secondary);
-  border: none;
-  color: var(--font-secondary);
-  font-weight: 300;
-}
-
-.blue-outline-btn {
-  background-color: #ffffff00;
-  border: 1px solid var(--bg-secondary);
-  color: var(--bg-secondary);
-  font-weight: 400;
-}
-
-.white-btn {
-  background-color: var(--bg-primary);
-  border: none;
-  color: var(--bg-secondary);
-  font-weight: 400;
-}
-
-.white-outline-btn {
-  background-color: #ffffff00;
-  border: 1px solid var(--bg-primary);
-  color: var(--bg-primary);
-  font-weight: 300;
-}
-
-.red-btn {
-  background-color: #00000000;
-  border: 1px solid var(--error);
-  color: var(--error);
-  font-weight: 400;
-}
-
 
 input {
-  border-radius: 6px;
   border: none;
-  outline: 2px solid var(--mid);
-  transition: all ease-in .3s;
+  outline: none;
 }
 
-input:focus {
-  outline: 2px solid var(--light-blue);
+.self-center {
+  align-self: center;
 }
-

@@ -1,0 +1,26 @@
+button {
+  background-color: #ffffff;
+  padding: 1rem;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.btn__text-only {
+  border: none;
+  background-color: #ffffff;
+}
+
+.btn-solid {
+  border: none;
+  color: #ffffff;
+  background-color: #000000;
+  margin: 1rem 0 0 0;
+}
+
+.btn-long {
+  width: 100%;
+}
+.btn-short {
+  width: 150px;
+}
