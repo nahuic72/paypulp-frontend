@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: ['react', 'prettier'],
   rules: {
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     camelcase: 'off',
     'no-useless-escape': 'off',
     'react/react-in-jsx-scope': 'off',
