@@ -4,9 +4,8 @@ import { userContext } from 'Context/UserContext'
 import ConfirmPurchase from 'Components/ConfirmPurchase'
 import Submitting from 'Components/Submitting'
 import PaymentGateway from 'Services/PaymentGateway'
-import Logo from 'Assets/Paypulptr.png'
 import 'Styles/PaymentView.css'
-import Login from 'Pages/Public/Login'
+import Login from 'Pages/Public/LoginPage'
 
 const PaymentView = () => {
   const { userInfo, paymentMethods } = useContext(userContext)
@@ -43,7 +42,7 @@ const PaymentView = () => {
   return (
     <div className="vp">
       <div className="pay-bar">
-        <img className="logo" src={Logo} alt="PayPulp logo" />
+        <img className="logo" src="" alt="PayPulp logo" />
       </div>
       {!isAuth && !submitState && <Login setIsAuth={setIsAuth} />}
       {isAuth && !submitState && (

@@ -7,7 +7,6 @@ import useWindowSize from 'Hooks/useWindowSize.js'
 import NavAuthBtns from './NavAuthBtns'
 import NavLinks from './NavLinks'
 import NavMenu from './NavMenu'
-import Logo from 'Assets/Paypulptr.png'
 import 'Styles/NavBar.css'
 
 export default function NavBar() {
@@ -35,7 +34,7 @@ export default function NavBar() {
       <div className="nav-wrapper">
         <nav onClick={() => showMenu === true && setShowMenu(!showMenu)}>
           <NavLink to="">
-            <img className="logo" src={Logo} alt="PayPulp logo" />
+            <img className="logo" src="" alt="PayPulp logo" />
           </NavLink>
 
           {width > 1000 ? (
