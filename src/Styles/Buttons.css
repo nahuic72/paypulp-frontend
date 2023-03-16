@@ -1,9 +1,10 @@
-button {
+.btn {
   background-color: #ffffff;
   padding: 1rem;
   border: none;
   border: 1px solid gray;
   border-radius: 4px;
+  text-align: center;
 }
 
 .btn__text-only {

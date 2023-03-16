@@ -9,7 +9,7 @@ import Auth from '../Services/Auth'
  * @param {boolean} isOnGateway if redirected from QR link -> redirect to checkout
  * @returns {error, errorSetter, onSubmit}
  */
-export default function useLogin(isOnGateway) {
+export default function useLogin(isOnGateway, setBuyerToken) {
   const { setUserInfo, setTransactions, setPaymentMethods } = useContext(userContext)
   const [loginError, setLoginError] = useState(null)
   const navigate = useNavigate()
@@ -22,8 +22,10 @@ export default function useLogin(isOnGateway) {
   const onSubmit = async (userData) => {
     try {
       const apiRes = await Auth.login(userData)
+      const userToken = apiRes.data.token
       if (isOnGateway) {
-        sessionStorage.setItem('token', apiRes.data.token)
+        // sessionStorage.setItem('token', apiRes.data.token)
+        setBuyerToken(userToken)
         // redirect
       } else if (!isOnGateway) {
         // localStorage.setItem('token', resLogin.data.token)
@@ -35,7 +37,7 @@ export default function useLogin(isOnGateway) {
         toast.error(msg)
       }
 
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         const msg = error.response.data
         toast.error(msg)
       }

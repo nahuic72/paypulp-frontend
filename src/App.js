@@ -3,7 +3,7 @@ import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
 import 'Styles/App.css'
 import 'Styles/Buttons.css'
 import MainApp from 'Components/MainApp'
-import PaymentView from 'Pages/PaymentView.jsx'
+import GatewayPage from 'Pages/GatewayPage.jsx'
 import Dashboard from 'Pages/Private/Dashboard'
 import LoginPage from 'Pages/Public/LoginPage'
 import Signup from 'Pages/Public/Signup'
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'gateway/:productUuid',
+    path: 'gateway/:slug',
     loader: ({ params }) => (params = { ...params, isOnGateway: true }),
-    element: <PaymentView />,
+    element: <GatewayPage />,
   },
 ])
 

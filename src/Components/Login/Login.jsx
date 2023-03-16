@@ -2,11 +2,11 @@ import HeaderLogin from './HeaderLogin'
 import 'Styles/Login.css'
 import FormLogin from './FormLogin'
 
-const Login = ({ isOnGateway }) => {
+const Login = ({ isOnGateway, setBuyerToken }) => {
   return (
     <div className="login">
       <HeaderLogin />
-      <FormLogin isOnGateway={isOnGateway} />
+      <FormLogin isOnGateway={isOnGateway} setBuyerToken={setBuyerToken} />
     </div>
   )
 }
