@@ -1,13 +1,13 @@
+import QrPage from 'Pages/QrPage'
 import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
-import MainApp from './Components/MainApp'
-import Dashboard from './Pages/Private/Dashboard'
-import Login from './Pages/Public/LoginPage'
-import PaymentView from './Pages/PaymentView.jsx'
-import Signup from './Pages/Public/Signup'
-import UserProfile from './Pages/UserProfile'
 import 'Styles/App.css'
 import 'Styles/Buttons.css'
-import QrPage from 'Pages/QrPage'
+import MainApp from 'Components/MainApp'
+import PaymentView from 'Pages/PaymentView.jsx'
+import Dashboard from 'Pages/Private/Dashboard'
+import LoginPage from 'Pages/Public/LoginPage'
+import Signup from 'Pages/Public/Signup'
+import UserProfile from 'Pages/UserProfile'
 
 const checkForToken = () => {
   if (!localStorage.getItem('token')) {
@@ -20,7 +20,7 @@ const loginLoader = ({ params }) => {
   if (localStorage.getItem('token')) {
     throw redirect('/dashboard')
   }
-  return (params = { isOnGateway: false })
+  return { ...params, isOnGateway: false }
 }
 
 const router = createBrowserRouter([
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: 'login',
         loader: loginLoader,
-        element: <Login />,
+        element: <LoginPage />,
       },
       {
         path: 'signup',

@@ -2,11 +2,11 @@ import HeaderLogin from './HeaderLogin'
 import 'Styles/Login.css'
 import FormLogin from './FormLogin'
 
-const Login = () => {
+const Login = ({ isOnGateway }) => {
   return (
     <div className="login">
       <HeaderLogin />
-      <FormLogin />
+      <FormLogin isOnGateway={isOnGateway} />
     </div>
   )
 }
