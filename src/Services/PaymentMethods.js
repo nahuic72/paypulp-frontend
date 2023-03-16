@@ -5,16 +5,11 @@ export default class PaymentMethods {
     return { headers: { Authorization: token } }
   }
 
-  static getDefaultPaymentMethod = async (userUuid) => {
-    const token = localStorage.getItem('token')
+  static getPayMetsGateway = async (token) => {
+    const baseUrl = process.env.REACT_APP_BASE_URL
     const config = this.getConfig(token)
 
-    const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/private/user/${userUuid}/paymentmethods`,
-      config,
-    )
-    if (res.status === 200) {
-      return res
-    }
+    const res = await axios.get(`${baseUrl}/private/user/paymethods`, config)
+    return res
   }
 }
