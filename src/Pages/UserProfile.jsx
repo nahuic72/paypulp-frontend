@@ -1,12 +1,8 @@
-import { Avatar } from '@mui/material'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import DashboardCard from '../Components/Dashboard/DashboardCard'
-import CustomerInfo from '../Components/Profile/CustomerInfo'
 import { userContext } from '../Context/UserContext'
 import Dates from '../Helpers/Dates'
 import UserInfo from '../Services/User'
-import '../Styles/UserProfile.css'
 
 const UserProfile = () => {
   const { userInfo } = useContext(userContext)
@@ -35,7 +31,7 @@ const UserProfile = () => {
 
   return (
     <section className="profile">
-      <h2 className="profile-title">Profile</h2>
+      {/* <h2 className="profile-title">Profile</h2>
       <DashboardCard className="profile-basic-info-card">
         <div className="profile-basic-info">
           <Avatar sx={{ width: 100, height: 100 }} />
@@ -54,7 +50,7 @@ const UserProfile = () => {
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
         />
-      </DashboardCard>
+      </DashboardCard> */}
     </section>
   )
 }
