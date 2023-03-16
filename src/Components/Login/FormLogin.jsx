@@ -29,9 +29,9 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
         </button>
         <div className="btn btn-solid btn-short self-center">Registrarse</div>
         <div className="login__social">
-          <div className="MOCK-social-login">icon</div>
-          <div className="MOCK-social-login">icon</div>
-          <div className="MOCK-social-login">icon</div>
+          <div className="MOCK-logo">icon</div>
+          <div className="MOCK-logo">icon</div>
+          <div className="MOCK-logo">icon</div>
         </div>
       </form>
       {/* <Toaster /> */}
