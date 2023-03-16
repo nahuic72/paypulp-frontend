@@ -2,10 +2,10 @@ import CheckboxInput from 'Components/Elements/CheckboxInput'
 import TextInput from 'Components/Elements/TextInput'
 import useLogin from 'Hooks/useLogin'
 import { useForm } from 'react-hook-form'
-import { toast, Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
-const FormLogin = ({ isOnGateway }) => {
-  const { loginError, setLoginError, onSubmit } = useLogin(true)
+const FormLogin = ({ isOnGateway, setBuyerToken }) => {
+  const { loginError, setLoginError, onSubmit } = useLogin(isOnGateway, setBuyerToken)
   const { register, handleSubmit } = useForm({
     mode: 'onTouched',
     defaultValues: {
@@ -13,8 +13,6 @@ const FormLogin = ({ isOnGateway }) => {
       password: '1234Q@we',
     },
   })
-
-  // const notify = () => toast.error('This is an error!');
 
   return (
     <>
@@ -26,17 +24,17 @@ const FormLogin = ({ isOnGateway }) => {
           <button className="btn__text-only">Olvide mi contraseña</button>
         </div>
         <CheckboxInput name="staySigned" label="Mantener sesión iniciada" />
-        <button className="btn-solid btn-long" onClick={handleSubmit}>
+        <button className="btn btn-solid btn-long" onClick={handleSubmit}>
           INICIAR SESION
         </button>
-        <button className="btn-solid btn-short self-center">Registrarse</button>
+        <div className="btn btn-solid btn-short self-center">Registrarse</div>
         <div className="login__social">
           <div className="MOCK-social-login">icon</div>
           <div className="MOCK-social-login">icon</div>
           <div className="MOCK-social-login">icon</div>
         </div>
       </form>
-      <Toaster />
+      {/* <Toaster /> */}
     </>
   )
 }
