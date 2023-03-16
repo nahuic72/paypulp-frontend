@@ -3,9 +3,7 @@ import { useContext } from 'react'
 import 'Styles/CardImage.css'
 
 const CardImage = () => {
-  const { userInfo, paymentMethods } = useContext(userContext)
-
-  const preferredPayMethod = paymentMethods.find((payMethod) => payMethod.isPreferred === true)
+  // const { userInfo, paymentMethods } = useContext(userContext)
 
   const formatCardNumber = (cardNumber) => {
     const length = cardNumber.length
@@ -16,16 +14,15 @@ const CardImage = () => {
   return (
     <div className="card-container">
       <div className="card-background">
-        <div className="card">
+        <div className="card card__gradient--1">
           <div className="card__top-info">
-            <div>{preferredPayMethod.cardType || 'bank'}</div>
-            <div>{preferredPayMethod.cardName || 'card name'}</div>
+            <div className="card__text">Credit Card</div>
+            <div className="card__text">Logo</div>
           </div>
-          <div className="card__owner-info">
-            <div>
-              {userInfo?.firstName} {userInfo?.lastName || ''}
-            </div>
-            <div>{formatCardNumber(preferredPayMethod.cardNumber)}</div>
+          <div className="card__number">0000 0000 0000 0000</div>
+          <div className="card__bottom-info">
+            <div className="card__text">First M Lastname</div>
+            <div className="card__text">00/00</div>
           </div>
         </div>
       </div>
