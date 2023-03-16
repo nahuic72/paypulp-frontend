@@ -21,7 +21,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
         <TextInput name="email" label="Email" register={register} />
         <TextInput name="password" label="Contraseña" register={register} />
         <div className="login__forgot-pass">
-          <button className="btn__text-only">Olvide mi contraseña</button>
+          <button className="btn-text-only">Olvide mi contraseña</button>
         </div>
         <CheckboxInput name="staySigned" label="Mantener sesión iniciada" />
         <button className="btn btn-solid btn-long" onClick={handleSubmit}>
