@@ -1,10 +1,12 @@
-import React from 'react'
+import Seller from './Seller'
 
 const FixAmount = () => {
   return (
-    <div className="checkout__info">
+    <div className="MOCK checkout__transaction-info">
       <Seller />
-      <div className="checkout__final-amount">10 e</div>
+      <div className="checkout__fix-amount">
+        <span>10 €</span>
+      </div>
     </div>
   )
 }
