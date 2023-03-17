@@ -24,3 +24,18 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.funds-input__wrapper {
+  display: flex;
+  padding: 0 1rem;
+  width: 80%;
+  border-bottom: 1px solid lightgray;
+  /* border-radius: 4px; */
+  position: relative;
+  /* margin: 1.5rem 0 0 0; */
+}
+
+.funds-input__wrapper input {
+  width: 100%;
+  text-align: center;
+}
