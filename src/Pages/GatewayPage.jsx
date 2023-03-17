@@ -62,7 +62,9 @@ const GatewayPage = () => {
   return (
     <main>
       {!buyerToken && !submitState && <Login isOnGateway={true} setBuyerToken={setBuyerToken} />}
-      {buyerToken && !submitState && <Checkout />}
+      {buyerToken && !submitState && (
+        <Checkout transactionInfo={transactionInfo} payMets={payMets} />
+      )}
       <Toaster />
     </main>
   )
