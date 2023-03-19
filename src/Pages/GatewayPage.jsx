@@ -9,6 +9,7 @@ import QrLinksReqs from 'Services/QrLinks'
 import { toast, Toaster } from 'react-hot-toast'
 import PaymentMethods from 'Services/PaymentMethods'
 import Checkout from 'Components/Gateway/Checkout'
+import Transactions from 'Services/Transactions'
 
 const GatewayPage = () => {
   const { slug, isOnGateway } = useLoaderData()
@@ -19,9 +20,23 @@ const GatewayPage = () => {
 
   useEffect(() => {
     if (buyerToken && !submitState) {
-      getData()
+      const req = async () => {
+        const res = await getData()
+        console.log(transactionInfo, buyerToken)
+      }
+      req()
     }
   }, [buyerToken, submitState])
+
+  useEffect(() => {
+    if (Object.keys(transactionInfo).length > 0) {
+      const req = async () => {
+        const tran = await postTransaction(transactionInfo, buyerToken)
+        console.log('post', tran)
+      }
+      req()
+    }
+  }, [transactionInfo])
 
   const getData = async () => {
     const resQrInfo = await getQrInfo(slug, buyerToken)
@@ -34,6 +49,22 @@ const GatewayPage = () => {
   const getQrInfo = async (slug, token) => {
     try {
       const res = await QrLinksReqs.getQrLinkInfo(slug, token)
+      return res.data[0]
+    } catch (error) {
+      const status = error.response.status
+      if (status === 401) {
+        toast.error('Unauthorized')
+        setBuyerToken(null)
+      }
+      if (status === 404) {
+        toast.error('Bad QR. Please ask the seller to generate a new one!')
+      }
+    }
+  }
+
+  const postTransaction = async (newTransaction, token) => {
+    try {
+      const res = await Transactions.postTransaction(newTransaction, token)
       return res.data[0]
     } catch (error) {
       const status = error.response.status

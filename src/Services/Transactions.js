@@ -5,11 +5,11 @@ class Transactions {
     return { headers: { Authorization: token } }
   }
 
-  static getTransactions = async (userUuid, page = null) => {
-    const token = localStorage.getItem('token')
-    const config = Transactions.getConfig(token)
+  static postTransaction = async (body, token) => {
+    const baseUrl = process.env.REACT_APP_BASE_URL
+    const config = this.getConfig(token)
 
-    const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/private/transaction`, config)
+    const res = await axios.post(`${baseUrl}/private/transaction`, body, config)
     return res
   }
 }
