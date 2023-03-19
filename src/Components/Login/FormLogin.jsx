@@ -12,7 +12,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
       email: '2@ratking.com',
       password: '1234Q@we',
     },
-  })
+  }) 
 
   return (
     <>
@@ -34,7 +34,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
           <div className="MOCK-logo">icon</div>
         </div>
       </form>
-      {/* <Toaster /> */}
+      {/*  <Toaster /> */}
     </>
   )
 }
