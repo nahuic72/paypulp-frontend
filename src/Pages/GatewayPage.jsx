@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { useLoaderData, useSearchParams } from 'react-router-dom'
+import { useLoaderData, useNavigate, useSearchParams } from 'react-router-dom'
 import { userContext } from 'Context/UserContext'
 import ConfirmPurchase from 'Components/ConfirmPurchase'
 import Submitting from 'Components/Submitting'
@@ -13,6 +13,7 @@ import Transactions from 'Services/Transactions'
 import { isObjEmpty } from 'Helpers/ToBoolean'
 
 const GatewayPage = () => {
+  const navigate = useNavigate()
   const { slug, isOnGateway } = useLoaderData()
   const [buyerToken, setBuyerToken] = useState(null)
   const [transactionInfo, setTransactionInfo] = useState({})
@@ -31,20 +32,65 @@ const GatewayPage = () => {
   useEffect(() => {
     if (!isObjEmpty(transactionInfo)) {
       const req = async () => {
-        const tran = await postTransaction(transactionInfo, buyerToken)
-        console.log('post', tran)
+        try {
+          const res = await postTransaction(transactionInfo, buyerToken)
+          const addInfo = {
+            ...transactionInfo,
+            transactionUuid: res.transactionUuid,
+          }
+          setTransactionInfo(addInfo)
+        } catch (error) {
+          console.error(error)
+          // redirect
+        }
       }
       req()
     }
-  }, [transactionInfo])
+  }, [transactionInfo.sellerUuid])
 
+  const confirmTransaction = async (tranUuid) => {
+    const req = async () => {
+      const updateInfo = {
+        transactionUuid: tranUuid,
+        userCompleted: true,
+        wentThrough: true,
+      }
+      setSubmitState('loading')
+      try {
+        await Transactions.confirmTransaction(updateInfo, buyerToken)
+        setSubmitState('success')
+      } catch (error) {
+        const status = error.response.status
+        if (status === 401) {
+          toast.error('Usuario no autorizado')
+          setBuyerToken(null)
+        }
+        if (status === 404) {
+          toast.error('Algo salio mal')
+        }
+      }
+    }
+    const toastMsgs = {
+      loading: 'Procesando el pago...',
+      success: <b>Compra realizada!</b>,
+      error: <b>Ha habido un error</b>,
+    }
+    const toastOpts = {
+      success: {
+        duration: 5000,
+        icon: '🔥',
+      },
+    }
+    await toast.promise(req(), toastMsgs, toastOpts)
+    setTimeout(() => navigate('/'), 5000)
+  }
   const getData = async () => {
     const resQrInfo = await getQrInfo(slug, buyerToken)
+    if (!resQrInfo) return
     const resPayMets = await getPayMets(buyerToken)
+    if (!resPayMets) return
     setTransactionInfo(resQrInfo)
     setPayMets(resPayMets)
-    console.log(resQrInfo)
-    // POST transaction
   }
 
   const getQrInfo = async (slug, token) => {
@@ -53,12 +99,12 @@ const GatewayPage = () => {
       return res.data[0]
     } catch (error) {
       const status = error.response.status
+      setBuyerToken(null)
       if (status === 401) {
-        toast.error('Unauthorized')
-        setBuyerToken(null)
+        toast.error('Usuario no autorizado')
       }
       if (status === 404) {
-        toast.error('Bad QR. Please ask the seller to generate a new one!')
+        toast.error('Codigo QR obsoleto')
       }
     }
   }
@@ -70,11 +116,11 @@ const GatewayPage = () => {
     } catch (error) {
       const status = error.response.status
       if (status === 401) {
-        toast.error('Unauthorized')
+        toast.error('Usuario no autorizado')
         setBuyerToken(null)
       }
       if (status === 404) {
-        toast.error('Bad QR. Please ask the seller to generate a new one!')
+        toast.error('Algo salio mal. Intentelo de nuevo en unos minutos.')
       }
     }
   }
@@ -86,7 +132,7 @@ const GatewayPage = () => {
     } catch (error) {
       const status = error.response.status
       if (status === 404) {
-        toast.error('There has been an error. Try again later')
+        toast.error('Algo salio mal. Intentelo de nuevo en unos minutos.')
       }
     }
   }
@@ -95,7 +141,11 @@ const GatewayPage = () => {
     <main>
       {!buyerToken && !submitState && <Login isOnGateway={true} setBuyerToken={setBuyerToken} />}
       {buyerToken && !isObjEmpty(transactionInfo) && (
-        <Checkout transactionInfo={transactionInfo} payMets={payMets} />
+        <Checkout
+          transactionInfo={transactionInfo}
+          payMets={payMets}
+          confirmTransaction={confirmTransaction}
+        />
       )}
       <Toaster />
     </main>

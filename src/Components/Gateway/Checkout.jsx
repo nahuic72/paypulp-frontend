@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import 'Styles/Checkout.css'
 import FixAmount from './CheckoutInfo/FixAmount'
 
-const Checkout = ({ transactionInfo, payMets }) => {
+const Checkout = ({ transactionInfo, payMets, confirmTransaction }) => {
   const navigate = useNavigate()
   const { checkoutType, totalAmount } = transactionInfo
 
@@ -20,7 +20,9 @@ const Checkout = ({ transactionInfo, payMets }) => {
         )}
       </div>
       <div className="checkout__btns">
-        <button className="btn btn-solid btn-long">PAGAR</button>
+        <button className="btn btn-solid btn-long" onClick={() => confirmTransaction()}>
+          PAGAR
+        </button>
         <button className="btn btn-text-only btn-short" onClick={goToApp}>
           cancelar
         </button>
