@@ -10,6 +10,7 @@ import { toast, Toaster } from 'react-hot-toast'
 import PaymentMethods from 'Services/PaymentMethods'
 import Checkout from 'Components/Gateway/Checkout'
 import Transactions from 'Services/Transactions'
+import { isObjEmpty } from 'Helpers/ToBoolean'
 
 const GatewayPage = () => {
   const { slug, isOnGateway } = useLoaderData()
@@ -21,15 +22,14 @@ const GatewayPage = () => {
   useEffect(() => {
     if (buyerToken && !submitState) {
       const req = async () => {
-        const res = await getData()
-        console.log(transactionInfo, buyerToken)
+        await getData()
       }
       req()
     }
   }, [buyerToken, submitState])
 
   useEffect(() => {
-    if (Object.keys(transactionInfo).length > 0) {
+    if (!isObjEmpty(transactionInfo)) {
       const req = async () => {
         const tran = await postTransaction(transactionInfo, buyerToken)
         console.log('post', tran)
@@ -43,6 +43,7 @@ const GatewayPage = () => {
     const resPayMets = await getPayMets(buyerToken)
     setTransactionInfo(resQrInfo)
     setPayMets(resPayMets)
+    console.log(resQrInfo)
     // POST transaction
   }
 
@@ -93,7 +94,7 @@ const GatewayPage = () => {
   return (
     <main>
       {!buyerToken && !submitState && <Login isOnGateway={true} setBuyerToken={setBuyerToken} />}
-      {buyerToken && !submitState && (
+      {buyerToken && !isObjEmpty(transactionInfo) && (
         <Checkout transactionInfo={transactionInfo} payMets={payMets} />
       )}
       <Toaster />
