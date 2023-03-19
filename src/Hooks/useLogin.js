@@ -1,60 +1,43 @@
 import { useContext, useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { userContext } from '../Context/UserContext'
 import Auth from '../Services/Auth'
-import Transactions from '../Services/Transactions'
 
 /**
- *
- * @param {boolean} isOnGateway if redirected from external e-commerce = true
- * @param {boolean} setIsAuth state setter on payment gateway
- * @returns {boolean, function}
+ * Handle login logic
+ * @param {boolean} isOnGateway if redirected from QR link -> redirect to checkout
+ * @returns {error, errorSetter, onSubmit}
  */
-export default function useLogin(isOnGateway, setIsAuth) {
+export default function useLogin(isOnGateway, setBuyerToken) {
   const { setUserInfo, setTransactions, setPaymentMethods } = useContext(userContext)
   const [loginError, setLoginError] = useState(null)
   const navigate = useNavigate()
 
-  // if user is already logged don't allow access to login page
-  useEffect(() => {
-    if (localStorage.getItem('token') && !isOnGateway) navigate(-1)
-  }, [])
 
   const onSubmit = async (userData) => {
-    let userUuid
-    // auth req
     try {
-      const resLogin = await Auth.login(userData)
-      if (resLogin.status === 200) {
-        userUuid = resLogin.data.userInfo.userUuid
-        localStorage.setItem('token', resLogin.data.token)
-        setUserInfo(resLogin.data.userInfo)
-        setPaymentMethods(resLogin.data.paymentMethods)
-        if (isOnGateway) {
-          setIsAuth(true)
-          return
-        }
+      const apiRes = await Auth.login(userData)
+      const userToken = apiRes.data.token
+      if (isOnGateway) {
+        // sessionStorage.setItem('token', apiRes.data.token)
+        setBuyerToken(userToken)
+        // redirect
+      } else if (!isOnGateway) {
+        // localStorage.setItem('token', resLogin.data.token)
+        // navigate('/dashboard')
       }
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {
-        const connection = 'There&apos;s been a problem. Check your internet conection.'
-        setLoginError(connection)
-        return
+        const msg = 'There&apos;s been a problem. Check your internet conection.'
+        toast.error(msg)
       }
 
-      if (error.response.status === 401) {
-        const validation = error.response.data
-        setLoginError(validation)
-        return
+      if (error.response?.status === 401) {
+        const msg = error.response.data
+        toast.error(msg)
       }
     }
-    try {
-      const resTransactions = await Transactions.getTransactions(userUuid)
-      if (resTransactions.status === 200) setTransactions(resTransactions.data)
-    } catch (error) {
-      // console.log(error)
-    }
-    navigate('/dashboard')
   }
 
   return { loginError, setLoginError, onSubmit }

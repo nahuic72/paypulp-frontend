@@ -1,0 +1,41 @@
+.text-input__wrapper {
+  display: flex;
+  padding: 1rem;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  position: relative;
+  margin: 1.5rem 0 0 0;
+}
+
+.text-input__wrapper label {
+  position: absolute;
+  top: -0.6rem;
+  background-color: #ffffff;
+  padding: 0 4px;
+  color: gray;
+}
+
+.text-input__wrapper input {
+  width: 90%;
+}
+
+.checkbox-input__wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.funds-input__wrapper {
+  display: flex;
+  padding: 0 1rem;
+  width: 80%;
+  border-bottom: 1px solid lightgray;
+  /* border-radius: 4px; */
+  position: relative;
+  /* margin: 1.5rem 0 0 0; */
+}
+
+.funds-input__wrapper input {
+  width: 100%;
+  text-align: center;
+}

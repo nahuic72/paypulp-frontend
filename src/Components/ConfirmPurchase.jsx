@@ -1,6 +1,6 @@
 import { Container, Paper } from '@mui/material'
 import Gateway from '../Services/PaymentGateway'
-import CardImage from './Dashboard/CardImage'
+import CardImage from './Elements/CardImage'
 
 const ConfirmPurchase = ({ product, userInfo, paymentMethods, setSubmitState }) => {
   const preferredPayMethod = paymentMethods.find((payMethod) => payMethod.isPreferred === true)

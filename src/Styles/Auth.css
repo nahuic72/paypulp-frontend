@@ -34,12 +34,12 @@
   max-width: 300px;
 }
 
-.input-wrapper {
+/* .input-wrapper {
   display: flex;
   flex-direction: column;
   padding: .5rem 0 0 0;
   transition: all ease-in-out .5s ;
-}
+} */
 
 .text-input {
   height: 1.5rem;

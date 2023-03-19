@@ -1,18 +1,13 @@
-import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
-import MainApp from './Components/MainApp'
-import Business from './Pages/Public/Business'
-import Dashboard from './Pages/Dashboard'
-import Developer from './Pages/Public/Developer'
-import FakeStore from './Pages/FakeStore'
-import Help from './Pages/Public/Help'
-import Home from './Pages/Public/Home'
-import Login from './Pages/Public/Login'
-import PaymentView from './Pages/PaymentView.jsx'
-import Personal from './Pages/Personal'
-import Signup from './Pages/Public/Signup'
-import UserProfile from './Pages/UserProfile'
-import './Styles/App.css'
 import QrPage from 'Pages/QrPage'
+import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
+import 'Styles/App.css'
+import 'Styles/Buttons.css'
+import MainApp from 'Components/MainApp'
+import GatewayPage from 'Pages/GatewayPage.jsx'
+import Dashboard from 'Pages/Private/Dashboard'
+import LoginPage from 'Pages/Public/LoginPage'
+import Signup from 'Pages/Public/Signup'
+import UserProfile from 'Pages/UserProfile'
 
 const checkForToken = () => {
   if (!localStorage.getItem('token')) {
@@ -25,7 +20,7 @@ const loginLoader = ({ params }) => {
   if (localStorage.getItem('token')) {
     throw redirect('/dashboard')
   }
-  return (params = { isOnGateway: false })
+  return { ...params, isOnGateway: false }
 }
 
 const router = createBrowserRouter([
@@ -34,34 +29,16 @@ const router = createBrowserRouter([
     element: <MainApp />,
     // errorElement: <ErrorPage />,
     children: [
-      {
-        path: '',
-        element: <Home />,
-      },
-      {
-        path: 'personal',
-        element: <Personal />,
-      },
-      {
-        path: 'business',
-        element: <Business />,
-      },
-      {
-        path: 'developer',
-        element: <Developer />,
-      },
+      // -TEST-
       {
         path: 'qrpage',
         element: <QrPage />,
       },
-      {
-        path: 'help',
-        element: <Help />,
-      },
+      // ------
       {
         path: 'login',
         loader: loginLoader,
-        element: <Login />,
+        element: <LoginPage />,
       },
       {
         path: 'signup',
@@ -85,13 +62,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'gateway/:productUuid',
+    path: 'gateway/:slug',
     loader: ({ params }) => (params = { ...params, isOnGateway: true }),
-    element: <PaymentView />,
-  },
-  {
-    path: 'fakestore',
-    element: <FakeStore />,
+    element: <GatewayPage />,
   },
 ])
 
