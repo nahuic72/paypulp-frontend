@@ -14,10 +14,6 @@ export default function useLogin(isOnGateway, setBuyerToken) {
   const [loginError, setLoginError] = useState(null)
   const navigate = useNavigate()
 
-  // if user is already logged don't allow access to login page
-  useEffect(() => {
-    if (localStorage.getItem('token') && !isOnGateway) navigate(-1)
-  }, [])
 
   const onSubmit = async (userData) => {
     try {
