@@ -1,9 +1,8 @@
-import { useForm } from 'react-hook-form'
-import Submitting from 'Components/Submitting'
-import 'Styles/Auth.css'
-import useSignup from 'Hooks/useSignup'
 import Registration1 from 'Components/Signup/Registration1'
 import Registration2 from 'Components/Signup/Registration2'
+import useSignup from 'Hooks/useSignup'
+import { useForm } from 'react-hook-form'
+import 'Styles/Auth.css'
 
 const signupDefaultValues = {
   firstName: 'Robert',
@@ -21,7 +20,7 @@ const signupDefaultValues = {
 }
 
 export default function Signup() {
-  const { page, setPage, submitting, setSubmitting, errorMessage, onSubmit } = useSignup()
+  const { page, setPage, onSubmit } = useSignup()
   const {
     register,
     handleSubmit,
@@ -31,12 +30,6 @@ export default function Signup() {
     mode: 'onTouched',
     defaultValues: signupDefaultValues,
   })
-
-  // go back to page 1 but keep info
-  const goBack = () => {
-    setPage(1)
-    setSubmitting(null)
-  }
 
   return (
     <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
