@@ -11,7 +11,7 @@ const GatewayPage = () => {
     useGateway(slug)
 
   return (
-    <main>
+    <>
       {!buyerToken && !isSubmit && <Login isOnGateway={true} setBuyerToken={setBuyerToken} />}
       {buyerToken && !isObjEmpty(transactionInfo) && (
         <Checkout
@@ -21,7 +21,7 @@ const GatewayPage = () => {
         />
       )}
       <Toaster />
-    </main>
+    </>
   )
 }
 
