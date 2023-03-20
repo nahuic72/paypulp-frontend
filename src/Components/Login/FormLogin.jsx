@@ -2,10 +2,9 @@ import CheckboxInput from 'Components/Elements/CheckboxInput'
 import TextInput from 'Components/Elements/TextInput'
 import useLogin from 'Hooks/useLogin'
 import { useForm } from 'react-hook-form'
-import { Toaster } from 'react-hot-toast'
 
 const FormLogin = ({ isOnGateway, setBuyerToken }) => {
-  const { loginError, setLoginError, onSubmit } = useLogin(isOnGateway, setBuyerToken)
+  const { onSubmit } = useLogin(isOnGateway, setBuyerToken)
   const { register, handleSubmit } = useForm({
     mode: 'onTouched',
     defaultValues: {
@@ -34,7 +33,6 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
           <div className="MOCK-logo">icon</div>
         </div>
       </form>
-      {/*  <Toaster /> */}
     </>
   )
 }
