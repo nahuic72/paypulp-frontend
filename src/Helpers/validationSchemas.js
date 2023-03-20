@@ -1,4 +1,4 @@
-const signupSchema = (watch) => {
+export const signupSchema = (watch) => {
   return {
     shortText: {
       required: 'Field required',

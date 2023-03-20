@@ -1,12 +1,16 @@
 import 'Styles/Inputs.css'
 
-const TextInput = ({ name, label, register, validationType }) => {
+const TextInput = ({ name, label, register, validationType, errors }) => {
+  console.log(errors)
   return (
-    <div className="text-input__wrapper">
-      <label htmlFor={name}>{label}</label>
-      <input type="text" name={name} {...register(name, validationType)} />
-      {name === 'email' && <div>Email MUI</div>}
-      {name === 'password' && <div>password icon</div>}
+    <div>
+      <div className="text-input__wrapper">
+        <label htmlFor={name}>{label}</label>
+        <input type="text" name={name} {...register(name, validationType)} />
+        {name === 'email' && <div>Email MUI</div>}
+        {name === 'password' && <div>password icon</div>}
+      </div>
+      {errors[name] && <p className="text-input__error">{errors[name].message}</p>}
     </div>
   )
 }
