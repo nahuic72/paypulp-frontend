@@ -19,12 +19,10 @@ export default function useLogin(isOnGateway, setBuyerToken) {
       const apiRes = await Auth.login(userData)
       const userToken = apiRes.data.token
       if (isOnGateway) {
-        // sessionStorage.setItem('token', apiRes.data.token)
         setBuyerToken(userToken)
-        // redirect
       } else if (!isOnGateway) {
-        // localStorage.setItem('token', resLogin.data.token)
-        // navigate('/dashboard')
+        localStorage.setItem('token', userToken)
+        navigate('/home')
       }
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {

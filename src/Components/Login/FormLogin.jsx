@@ -34,7 +34,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
           <div className="MOCK-logo">icon</div>
         </div>
       </form>
-      {/* <Toaster /> */}
+      {/*  <Toaster /> */}
     </>
   )
 }
