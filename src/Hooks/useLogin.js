@@ -14,7 +14,6 @@ export default function useLogin(isOnGateway, setBuyerToken) {
   const [loginError, setLoginError] = useState(null)
   const navigate = useNavigate()
 
-
   const onSubmit = async (userData) => {
     try {
       const apiRes = await Auth.login(userData)
