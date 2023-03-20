@@ -22,6 +22,11 @@
 .btn-long {
   width: 100%;
 }
+
 .btn-short {
   width: 150px;
+}
+
+.btn:disabled {
+  background-color: gray;
 }
