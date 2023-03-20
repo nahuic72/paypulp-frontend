@@ -20,30 +20,8 @@ import Dashboard from 'Pages/Private/Dashboard'
 import LoginPage from 'Pages/Public/LoginPage'
 import Signup from 'Pages/Public/Signup'
 import UserProfile from 'Pages/UserProfile'
+import Home from 'Pages/Private/Home'
 
-/* const checkForToken = () => {
-  if (!localStorage.getItem('token')) {
-    throw redirect('/login')
-  }
-  return null
-}
-
-const loginLoader = ({ params }) => {
-  if (localStorage.getItem('token')) {
-    throw redirect('/dashboard')
-  }
-  return { ...params, isOnGateway: false }
-}
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<MainApp />}>
-      <Route path="qrpage" element={<QrPage />} />
-      <Route path="login" element={<LoginPage />} loader={loginLoader} />
-      <Route path="signup" element={<Signup />} loader={loginLoader} />
-    </Route>,
-  ),
-) */
 // [
 // {
 // path: '/',
@@ -90,6 +68,13 @@ const router = createBrowserRouter(
   },
 ]) */
 
+const checkForToken = () => {
+  if (!localStorage.getItem('token')) {
+    throw redirect('/login')
+  }
+  return null
+}
+
 const loginLoader = ({ params = {} } = {}) => {
   if (localStorage.getItem('token')) {
     throw redirect('/dashboard')
@@ -103,6 +88,9 @@ const router = createBrowserRouter(
       <Route path="qrpage" element={<QrPage />} />
       <Route path="login" element={<LoginPage />} loader={loginLoader} />
       <Route path="signup" element={<Signup />} loader={loginLoader} />
+      <Route path="" loader={checkForToken}>
+        <Route path="home" element={<Home />} />
+      </Route>
     </Route>,
   ),
 )
