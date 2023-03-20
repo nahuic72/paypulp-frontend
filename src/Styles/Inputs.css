@@ -1,8 +1,9 @@
 .text-input__wrapper {
   display: flex;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 13px 13px 13px 16px;
   width: 100%;
-  border: 1px solid lightgray;
+  border: 2px solid var(--primary);
   border-radius: 4px;
   position: relative;
   margin: 1.5rem 0 0 0;
@@ -10,14 +11,17 @@
 
 .text-input__wrapper label {
   position: absolute;
-  top: -0.6rem;
-  background-color: #ffffff;
-  padding: 0 4px;
-  color: gray;
+  top: -1rem;
+  background-color: var(--bg);
+  padding: 4px;
+  color: var(--secondary);
+  border-radius: var(--radius
+  );
 }
 
 .text-input__wrapper input {
-  width: 90%;
+  flex-grow: 1;
+  height: fit-content;
 }
 
 .checkbox-input__wrapper {

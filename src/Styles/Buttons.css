@@ -1,6 +1,6 @@
 .btn {
-  background-color: #ffffff;
-  padding: 1rem;
+  background-color: inherit;
+  padding: 0.625rem;
   border: none;
   border: 1px solid gray;
   border-radius: 4px;
@@ -9,13 +9,16 @@
 
 .btn-text-only {
   border: none;
-  background-color: #ffffff;
+  background-color: var(--bg);
+  font: var(--text-body);
+  text-decoration: underline;
 }
 
 .btn-solid {
   border: none;
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--bg);
+  background-color: var(--primary);
+  font: var(--text-h3);
   margin: 1rem 0 0 0;
 }
 

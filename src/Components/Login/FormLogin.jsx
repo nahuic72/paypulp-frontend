@@ -23,11 +23,10 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
         <div className="login__forgot-pass">
           <button className="btn-text-only">Olvide mi contraseña</button>
         </div>
-        <CheckboxInput name="staySigned" label="Mantener sesión iniciada" />
         <button className="btn btn-solid btn-long" onClick={handleSubmit}>
-          INICIAR SESION
+          Iniciar Sesión
         </button>
-        <div className="btn btn-solid btn-short self-center">Registrarse</div>
+        <div className="btn btn-text-only self-center">Registrarse</div>
         <div className="login__social">
           <div className="MOCK-logo">icon</div>
           <div className="MOCK-logo">icon</div>
