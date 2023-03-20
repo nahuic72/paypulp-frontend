@@ -61,9 +61,6 @@ const Registration2 = ({ register, setPage, watch, errors, isValid }) => {
         validationType={shortText}
         errors={errors}
       />
-      {/*  <button className="btn btn-solid btn-long" onClick={() => setPage(2)} disabled={!isValid}>
-        GUARDAR
-      </button> */}
     </>
   )
 }

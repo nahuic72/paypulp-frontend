@@ -48,15 +48,6 @@ export default function Signup() {
   }
 
   return (
-    /*    <div className="login_form">
-      {submitting ? (
-        <Submitting
-          submitState={submitting}
-          goBack={goBack}
-          errorMessage={errorMessage}
-          location="signup"
-        />
-      ) : ( */
     <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
       {page === 1 && (
         <Registration1

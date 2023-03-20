@@ -51,3 +51,8 @@
   width: 100%;
   text-align: center;
 }
+
+.text-input__error {
+  color: red;
+  font-size: 13px;
+}
