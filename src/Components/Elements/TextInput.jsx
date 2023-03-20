@@ -1,4 +1,3 @@
-
 import 'Styles/Inputs.css'
 
 const TextInput = ({ name, label, register, validationType }) => {
