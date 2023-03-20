@@ -18,7 +18,6 @@ const useSignup = () => {
 
     // set submitting msg
 
-
     try {
       const res = await Auth.signup(userData)
       if (res.status === 201) {
