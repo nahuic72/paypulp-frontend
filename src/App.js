@@ -1,72 +1,18 @@
 import QrPage from 'Pages/QrPage'
 import {
-  DataRouter,
-  useLoaderData,
   createBrowserRouter,
   Route,
-  Router,
   redirect,
-  Routes,
   RouterProvider,
   createRoutesFromElements,
-  BrowserRouter,
 } from 'react-router-dom'
-
 import 'Styles/App.css'
 import 'Styles/Buttons.css'
 import MainApp from 'Components/MainApp'
 import GatewayPage from 'Pages/GatewayPage.jsx'
-import Dashboard from 'Pages/Private/Dashboard'
 import LoginPage from 'Pages/Public/LoginPage'
 import Signup from 'Pages/Public/Signup'
-import UserProfile from 'Pages/UserProfile'
 import Home from 'Pages/Private/Home'
-
-// [
-// {
-// path: '/',
-// element: <MainApp />,
-// errorElement: <ErrorPage />,
-// children: [
-// -TEST-
-// {
-// path: 'qrpage',
-// element: <QrPage />,
-// },
-// ------
-// {
-// path: 'login',
-// loader: loginLoader,
-// element: <LoginPage />,
-// },
-
-// {
-// path: 'signup',
-// loader: loginLoader,
-// element: <Signup />,
-// },
-/*  {
-        path: '',
-        loader: checkForToken, 
-        children: [
-          {
-            path: 'dashboard',
-            element: <Dashboard />,
-          },
-          {
-            path: 'profile',
-            element: <UserProfile />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: 'gateway/:slug',
-    loader: ({ params }) => (params = { ...params, isOnGateway: true }),
-    element: <GatewayPage />,
-  },
-]) */
 
 const checkForToken = () => {
   if (!localStorage.getItem('token')) {
@@ -77,10 +23,12 @@ const checkForToken = () => {
 
 const loginLoader = ({ params = {} } = {}) => {
   if (localStorage.getItem('token')) {
-    throw redirect('/dashboard')
+    throw redirect('/home')
   }
   return { ...params, isOnGateway: false }
 }
+
+const gatewayLoader = ({ params }) => (params = { ...params, isOnGateway: true })
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -88,20 +36,14 @@ const router = createBrowserRouter(
       <Route path="qrpage" element={<QrPage />} />
       <Route path="login" element={<LoginPage />} loader={loginLoader} />
       <Route path="signup" element={<Signup />} loader={loginLoader} />
-      <Route path="" loader={checkForToken}>
+      <Route loader={checkForToken}>
         <Route path="home" element={<Home />} />
       </Route>
+      <Route path="gateway/:slug" element={<GatewayPage />} loader={gatewayLoader} />,
     </Route>,
   ),
 )
 function App() {
-  const checkForToken = () => {
-    if (!localStorage.getItem('token')) {
-      throw redirect('/login')
-    }
-    return null
-  }
-
   return <RouterProvider router={router} />
 }
 
