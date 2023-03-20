@@ -12,7 +12,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
       email: '2@ratking.com',
       password: '1234Q@we',
     },
-  }) 
+  })
 
   return (
     <>
