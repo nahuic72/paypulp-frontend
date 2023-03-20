@@ -21,16 +21,7 @@ const signupDefaultValues = {
 }
 
 export default function Signup() {
-  const {
-    page,
-    setPage,
-    accountType,
-    setAccountType,
-    submitting,
-    setSubmitting,
-    errorMessage,
-    onSubmit,
-  } = useSignup()
+  const { page, setPage, submitting, setSubmitting, errorMessage, onSubmit } = useSignup()
   const {
     register,
     handleSubmit,

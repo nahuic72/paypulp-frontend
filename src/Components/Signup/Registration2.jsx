@@ -10,7 +10,7 @@ const Registration2 = ({ register, setPage, watch, errors, isValid }) => {
     { name: 'Género no conforme', id: 2 },
     { name: 'Mujer', id: 3 },
     { name: 'Hombre', id: 4 },
-    { name: 'No me identifico con ninguna de las opciones anteriores', id: 5 },
+    { name: 'No me siento identificade', id: 5 },
     { name: 'Prefiero no contestar', id: 6 },
   ]
 

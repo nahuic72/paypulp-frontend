@@ -8,7 +8,6 @@ const useSignup = () => {
   const { setUserInfo, setTransactions, setPaymentMethods } = useContext(userContext)
   const navigate = useNavigate()
   const [page, setPage] = useState(1)
-  const [accountType, setAccountType] = useState(null)
   const [submitting, setSubmitting] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -17,7 +16,6 @@ const useSignup = () => {
       delete userData.confirmPassword
       userData = {
         ...userData,
-        accountType,
         timeZone: Dates.getTimezone(),
       }
     }
@@ -52,8 +50,6 @@ const useSignup = () => {
   return {
     page,
     setPage,
-    accountType,
-    setAccountType,
     submitting,
     setSubmitting,
     errorMessage,
