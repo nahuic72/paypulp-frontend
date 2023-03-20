@@ -1,4 +1,4 @@
-import { Container, Paper } from '@mui/material'
+/* import { Container, Paper } from '@mui/material' */
 import Gateway from '../Services/PaymentGateway'
 import CardImage from './Elements/CardImage'
 
@@ -28,7 +28,8 @@ const ConfirmPurchase = ({ product, userInfo, paymentMethods, setSubmitState }) 
   }
 
   return (
-    <Container className="container">
+    <></>
+    /*  <Container className="container">
       <Paper className="pay-info-container" elevation={3}>
         <h2>You&apos;re purschasing: {product?.product_name}</h2>
         <div>with payment method:</div>
@@ -39,7 +40,7 @@ const ConfirmPurchase = ({ product, userInfo, paymentMethods, setSubmitState }) 
           Confirm payment
         </button>
       </Paper>
-    </Container>
+    </Container> */
   )
 }
 
