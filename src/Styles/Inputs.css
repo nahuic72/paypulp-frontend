@@ -25,6 +25,18 @@
   gap: 0.5rem;
 }
 
+.select-input__wrapper {
+  border: transparent;
+  width: 100%;
+  position: relative;
+}
+
+.select-inout__options {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .funds-input__wrapper {
   display: flex;
   padding: 0 1rem;
@@ -38,4 +50,9 @@
 .funds-input__wrapper input {
   width: 100%;
   text-align: center;
+}
+
+.text-input__error {
+  color: red;
+  font-size: 13px;
 }

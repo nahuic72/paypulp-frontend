@@ -26,7 +26,7 @@ export default function useLogin(isOnGateway, setBuyerToken) {
       }
     } catch (error) {
       if (error.code === 'ERR_NETWORK') {
-        const msg = 'There&apos;s been a problem. Check your internet conection.'
+        const msg = `There's been a problem. Check your internet conection.`
         toast.error(msg)
       }
 
