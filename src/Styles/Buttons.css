@@ -1,8 +1,6 @@
 .btn {
   background-color: inherit;
-  padding: 0.625rem;
   border: none;
-  border: 1px solid gray;
   border-radius: 4px;
   text-align: center;
 }
@@ -15,11 +13,11 @@
 }
 
 .btn-solid {
+  padding: 0.625rem;
   border: none;
-  color: var(--bg);
   background-color: var(--primary);
+  color: var(--bg);
   font: var(--text-h3);
-  margin: 1rem 0 0 0;
 }
 
 .btn-long {

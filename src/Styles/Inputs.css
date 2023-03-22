@@ -1,12 +1,11 @@
 .text-input__wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 13px 13px 13px 16px;
+  padding: 13px 21px 13px 16px;
   width: 100%;
   border: 2px solid var(--primary);
   border-radius: 4px;
   position: relative;
-  margin: 1.5rem 0 0 0;
 }
 
 .text-input__wrapper label {

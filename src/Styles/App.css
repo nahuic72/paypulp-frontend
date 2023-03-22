@@ -109,9 +109,20 @@ main {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  padding: 1rem;
 }
 
 .self-center {
   align-self: center;
+}
+
+.MOCK-logo{
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #000000;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
 }
