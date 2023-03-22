@@ -1,0 +1,23 @@
+import { useContext, useEffect, useState } from 'react'
+import UserInfo from 'Services/User'
+import { userCtxt } from '../Context/UserContext'
+
+export default function useGetUserInfo() {
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await UserInfo.getUserInfo()
+        setUser(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+
+    // get pyment methods
+  })
+
+  return { user }
+}
