@@ -8,25 +8,28 @@
 }
 
 .card {
-  height: 176px;
-  width: 295px;
-  padding: .7rem;
   display: flex;
+  height: 220px;
+  width: 350px;
+  border-radius: 12px;
+  padding: 15px 21px 26px 18px;
   flex-direction: column;
   justify-content: space-between;
   color: #ffffff;
   backdrop-filter: blur(2rem);
   -webkit-backdrop-filter: blur(2rem);
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #ffffff00;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
 }
 
 .card__gradient--1 {
-  background: rgb(149, 228, 198);
-  background: linear-gradient(340deg, rgba(149, 228, 198, 1) 0%, rgba(16, 62, 105, 1) 100%);
+  background: #95e4c6;
+  background: linear-gradient(270deg, #f9c823 0%, #faa03c 33.65%, #fb7855 66.98%, #fc506e 100%);
+}
+.card__gradient--2 {
+  background: #780c67;
+  background: linear-gradient(68.44deg, #780c67 0%, #940967 41.98%, #b10667 73.75%, #d90266 100%);
 }
 
 .card__top-info {
@@ -44,7 +47,7 @@
 }
 
 .card__text {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .card__shadow {
@@ -54,4 +57,68 @@
   margin: -30rem 0 0 -30rem;
   background: rgb(0, 0, 0);
   background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* card funds */
+
+.card-funds {
+  display: flex;
+  height: 220px;
+  width: 350px;
+  border-radius: 12px;
+  padding: 15px 21px 26px 18px;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ffffff;
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.card-funds__gradient {
+  background: rgb(149, 228, 198);
+  background: linear-gradient(244.42deg, #363b3e 21.65%, #29efcb 70.95%);
+}
+
+.card-funds__top-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-funds__number {
+  padding: 1.5rem 0 0 0;
+}
+
+.card-funds__bottom-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-funds__text {
+  font-size: 0.8rem;
+}
+
+.card-funds__shadow {
+  position: absolute;
+  width: 40rem;
+  height: 40rem;
+  margin: -30rem 0 0 -30rem;
+  background: rgb(0, 0, 0);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* position */
+.cards__first {
+  grid-row: 3 / span 1;
+  z-index: 10;
+}
+.cards__second {
+  grid-row: 2 / span 1;
+  z-index: 5;
+}
+.cards__third {
+  grid-row: 1 / span 1;
+  z-index: 1;
 }

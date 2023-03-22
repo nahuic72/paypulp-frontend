@@ -22,9 +22,7 @@ const checkForToken = () => {
 }
 
 const loginLoader = ({ params = {} } = {}) => {
-  if (localStorage.getItem('token')) {
-    throw redirect('/home')
-  }
+  // proper check for token
   return { ...params, isOnGateway: false }
 }
 

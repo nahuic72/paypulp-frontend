@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Dates from 'Helpers/Dates'
 import Auth from 'Services/Auth'
+import { toast } from 'react-hot-toast'
 
 const useSignup = () => {
   const navigate = useNavigate()
   const [page, setPage] = useState(1)
+  const [errorMessage, setErrorMessage] = useState(null)
+
 
   const onSubmit = async (userData) => {
     delete userData.confirmPassword
@@ -30,6 +33,7 @@ const useSignup = () => {
   return {
     page,
     setPage,
+    errorMessage,
     onSubmit,
   }
 }

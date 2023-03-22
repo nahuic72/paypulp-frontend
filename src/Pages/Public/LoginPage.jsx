@@ -1,5 +1,5 @@
 import Login from 'Components/Login/Login'
-import { useLoaderData, useSearchParams } from 'react-router-dom'
+import { useLoaderData } from 'react-router-dom'
 import 'Styles/Auth.css'
 
 const LoginPage = () => {

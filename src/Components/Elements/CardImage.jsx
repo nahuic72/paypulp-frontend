@@ -2,7 +2,7 @@ import { userContext } from 'Context/UserContext'
 import { useContext } from 'react'
 import 'Styles/CardImage.css'
 
-const CardImage = () => {
+const CardImage = ({ gradient, position }) => {
   // const { userInfo, paymentMethods } = useContext(userContext)
 
   const formatCardNumber = (cardNumber) => {
@@ -12,19 +12,15 @@ const CardImage = () => {
   }
 
   return (
-    <div className="card-container">
-      <div className="card-background">
-        <div className="card card__gradient--1">
-          <div className="card__top-info">
-            <div className="card__text">Credit Card</div>
-            <div className="card__text">Logo</div>
-          </div>
-          <div className="card__number">0000 0000 0000 0000</div>
-          <div className="card__bottom-info">
-            <div className="card__text">First M Lastname</div>
-            <div className="card__text">00/00</div>
-          </div>
-        </div>
+    <div className={`card ${gradient} ${position}`}>
+      <div className="card__top-info">
+        <div className="card__text">Credit Card</div>
+        <div className="card__text">Logo</div>
+      </div>
+      <div className="card__number">0000 0000 0000 0000</div>
+      <div className="card__bottom-info">
+        <div className="card__text">First M Lastname</div>
+        <div className="card__text">00/00</div>
       </div>
     </div>
   )
