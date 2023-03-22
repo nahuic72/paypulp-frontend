@@ -12,7 +12,7 @@ const Home = () => {
       <HomeHeader name={user.firstName} />
       <HomeFunds funds={user.funds} />
       <CardsArray funds={user.funds} />
-      <HomeActions />
+      <HomeActions accountType={user.accountType} />
     </>
   )
 }
