@@ -5,6 +5,7 @@
   /* align-items: center; */
   padding: 42px 16px 0;
   height: 615px; 
+  position: relative;
   transition: all .5s ease-in;
 }
 
@@ -74,4 +75,9 @@ input[type="radio"]:checked::before {
 
 .add-seller__store-address {
   padding: 20px 0 0 0;
+}
+
+.add-seller__optional-fields {
+  /* opacity: 0; */
+  transition: all .5s ease-in;
 }

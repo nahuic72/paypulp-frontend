@@ -11,12 +11,15 @@ const AddSellerForm = () => {
   } = useForm()
 
   const radioOption = watch('hasLocation')
+  const spaceTop = radioOption !== 'withLocation' ? { paddingTop: 114, height: 503 } : null
+  const optionalInputs =
+    radioOption !== 'withLocation'
+      ? { position: 'absolute', opacity: 0, bottom: 0, zIndex: -10 }
+      : { position: 'static', opacity: 1 }
 
   const onSubmit = (e) => {
     console.log(e)
   }
-
-  const spaceTop = radioOption !== 'withLocation' ? { paddingTop: 114, height: 503 } : null
 
   return (
     <form className="add-seller__wrapper" style={spaceTop} onSubmit={handleSubmit(onSubmit)}>
@@ -27,8 +30,6 @@ const AddSellerForm = () => {
           compradores.
         </div>
       </div>
-
-      {/* <div className="add-seller__spacer-1"></div> */}
 
       <div className="add-seller__category">
         <TextInput name="category" label="Categoría" register={register} />
@@ -49,26 +50,19 @@ const AddSellerForm = () => {
         </div>
       </div>
 
-      {radioOption === 'withLocation' && (
-        <>
-          <div className="add-seller__store-address">
-            <TextInput name="storeAddress" label="Dirección" register={register} />
-            <div className="add-seller__text-aux text-aux">
-              El nombre que elijas aparecerá en los comprobantes de pago y en las actividades de tus
-              compradores.
-            </div>
-          </div>
+      <div className="add-seller__optional-fields" style={optionalInputs}>
+        <div className="add-seller__store-address">
+          <TextInput name="storeAddress" label="Dirección" register={register} />
+          <div className="add-seller__text-aux text-aux">Ingresa la dirección de tu negocio.</div>
+        </div>
 
-          <div className="add-seller__spacer-1"></div>
+        <div className="add-seller__spacer-1"></div>
 
-          <div>
-            <TextInput name="storeAddressAddInfo" label="Datos extra" register={register} />
-            <div className="add-seller__text-aux text-aux">
-              Elige el rubro principal de tu negocio.
-            </div>
-          </div>
-        </>
-      )}
+        <div>
+          <TextInput name="storeAddressAddInfo" label="Datos extra" register={register} />
+          <div className="add-seller__text-aux text-aux">Nro. de local, piso, etc.</div>
+        </div>
+      </div>
 
       <button className="add-seller__submit-btn btn btn-long btn-solid">Continuar</button>
     </form>
