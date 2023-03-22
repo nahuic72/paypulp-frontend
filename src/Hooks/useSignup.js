@@ -9,7 +9,6 @@ const useSignup = () => {
   const [page, setPage] = useState(1)
   const [errorMessage, setErrorMessage] = useState(null)
 
-
   const onSubmit = async (userData) => {
     delete userData.confirmPassword
     userData = {
