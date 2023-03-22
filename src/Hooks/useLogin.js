@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import { userContext } from '../Context/UserContext'
 import Auth from '../Services/Auth'
 
 /**
@@ -10,7 +9,6 @@ import Auth from '../Services/Auth'
  * @returns {error, errorSetter, onSubmit}
  */
 export default function useLogin(isOnGateway, setBuyerToken) {
-  const { setUserInfo, setTransactions, setPaymentMethods } = useContext(userContext)
   const [loginError, setLoginError] = useState(null)
   const navigate = useNavigate()
 

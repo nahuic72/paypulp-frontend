@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import UserInfo from 'Services/User'
-import { userCtxt } from '../Context/UserContext'
 
 export default function useGetUserInfo() {
   const [user, setUser] = useState({})
