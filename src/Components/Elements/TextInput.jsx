@@ -15,8 +15,8 @@ const TextInput = ({ name, label, register, validationType, errors, type }) => {
   return (
     <div>
       <div className="text-input__wrapper">
-        <label htmlFor={name}>{label}</label>
-        <input type={type} {...register(name, validationType)} />
+        <label className="text-aux" htmlFor={name}>{label}</label>
+        <input className="text" type={type} {...register(name, validationType)} />
         {name === 'email' && <div>E</div>}
         {name === 'password' && <div>P</div>}
       </div>
