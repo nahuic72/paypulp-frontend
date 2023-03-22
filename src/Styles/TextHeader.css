@@ -1,0 +1,16 @@
+.text-header {
+  margin: 10px 0 0 0;
+  padding: 0 0 5px 0;
+  border-bottom: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+}
+
+.text-header__arrow {
+  margin: 0 27px 0 21px;
+}
+
+.text-header__text {
+  flex-grow: 1;
+  padding: 19px;
+}
