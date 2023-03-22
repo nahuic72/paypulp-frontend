@@ -1,26 +1,106 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@font-face {
+  font-family: 'Blinker';
+  src: url('../Assets/Fonts/blinker-regular-webfont.woff2') format('woff2'),
+    url('../Assets/Fonts/blinker-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Blinker';
+  src: url('../Assets/Fonts/blinker-semibold-webfont.woff2') format('woff2'),
+    url('../Assets/Fonts/blinker-semibold-webfont.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Blinker';
+  src: url('../Assets/Fonts/blinker-bold-webfont.woff2') format('woff2'),
+    url('../Assets/Fonts/blinker-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../Assets/Fonts/roboto-regular-webfont.woff2') format('woff2'),
+    url('../Assets/Fonts/roboto-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --text-primary: #000000;
+  --primary: #29efcb;
+  --secondary: #2bffd9;
+  --error: #ff6369;
+  --success: #b4dfc4;
+  --bg: #363b3e;
+  --bg-2: #fbfcfd;
+  --white: #ffffff;
+  --diasble: #f1f3f5;
+  --diasble-text: #dadee1;
+  --radius: 8px;
+  --text-h3: 400 1.25rem 'Blinker', 'Roboto', sans-serif;
+  --text-body: 1rem 'Roboto', sans-serif;
 }
 
-span, div, p {
+span,
+div,
+p,
+button,
+a {
   color: inherit;
 }
 
+h1 {
+  font: 2rem 'Blinker', 'Roboto', sans-serif;
+}
+
+h2 {
+  font: 1.5rem 'Blinker', 'Roboto', sans-serif;
+}
+
+h3 {
+  font: 1.25rem 'Blinker', 'Roboto', sans-serif;
+}
+
+.text {
+  font: 1rem 'Roboto', sans-serif;
+}
+
+.link {
+  font: 1rem 'Roboto', sans-serif;
+  text-decoration: solid;
+}
+
+.text-aux {
+  font: 0.81rem 'Roboto', sans-serif;
+}
+
+.link-aux {
+  font: 0.81rem 'Roboto', sans-serif;
+  text-decoration: solid;
+}
+
 #root {
-  color: var(--text-dark);
+  color: var(--primary);
+  background-color: var(--bg);
   height: 100vh;
   overflow: hidden;
   position: absolute;
   width: 100vw;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: var(--bg);
+  color: var(--white)
 }
 
 main {
@@ -29,14 +109,20 @@ main {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  padding: 1rem;
-}
-
-input {
-  border: none;
-  outline: none;
 }
 
 .self-center {
   align-self: center;
+}
+
+.MOCK-logo{
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #000000;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
 }
