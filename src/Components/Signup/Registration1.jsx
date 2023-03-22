@@ -14,6 +14,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
       <h2>Regístrate</h2>
       <TextInput
         name="firstName"
+        type="text"
         label="Nombre:"
         register={register}
         validationType={shortText}
@@ -21,6 +22,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
       />
       <TextInput
         name="lastName"
+        type="text"
         label="Apellido:"
         register={register}
         validationType={shortText}
@@ -28,6 +30,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
       />
       <TextInput
         name="phone"
+        type="text"
         label="Numero de teléfono:"
         register={register}
         validationType={phone}
@@ -35,6 +38,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
       />
       <TextInput
         name="email"
+        type="text"
         label="Email:"
         register={register}
         validationType={email}
@@ -42,6 +46,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
       />
       <TextInput
         name="password"
+        type="password"
         label="Contraseña:"
         register={register}
         validationType={password}
@@ -49,6 +54,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
       />
       <TextInput
         name="confirmPassword"
+        type="password"
         label="Confirma Contraseña:"
         register={register}
         validationType={confirmPassword}
