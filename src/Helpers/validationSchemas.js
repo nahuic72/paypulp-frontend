@@ -50,12 +50,9 @@ export const signupSchema = (watch) => {
     },
     confirmPassword: {
       required: 'Please confirm your password',
-      pattern: {
-        // value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-        message: "Password doesn't match",
-      },
-      validate: (value) => value === watch('password'),
+      validate: (value) => value === watch('password') || 'Passwords do not match',
     },
+
     date: {
       required: 'Field required',
       minLength: {
