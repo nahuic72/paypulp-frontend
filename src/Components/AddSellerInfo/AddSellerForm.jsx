@@ -16,21 +16,24 @@ const AddSellerForm = () => {
     console.log(e)
   }
 
-  const spaceTop = radioOption !== 'withLocation' ? { paddingTop: 114 } : null
+  const spaceTop = radioOption !== 'withLocation' ? { paddingTop: 114, height: 503 } : null
 
   return (
     <form className="add-seller__wrapper" style={spaceTop} onSubmit={handleSubmit(onSubmit)}>
-
-      <TextInput name="sellerName" label="Nombre del negocio" register={register} />
-      <div className="add-seller__text-aux text-aux">
-        El nombre que elijas aparecerá en los comprobantes de pago y en las actividades de tus
-        compradores.
+      <div>
+        <TextInput name="sellerName" label="Nombre del negocio" register={register} />
+        <div className="add-seller__text-aux text-aux">
+          El nombre que elijas aparecerá en los comprobantes de pago y en las actividades de tus
+          compradores.
+        </div>
       </div>
 
-      <div className="add-seller__spacer-1"></div>
+      {/* <div className="add-seller__spacer-1"></div> */}
 
-      <TextInput name="category" label="Categoría" register={register} />
-      <div className="add-seller__text-aux text-aux">Elige el rubro principal de tu negocio.</div>
+      <div className="add-seller__category">
+        <TextInput name="category" label="Categoría" register={register} />
+        <div className="add-seller__text-aux text-aux">Elige el rubro principal de tu negocio.</div>
+      </div>
 
       <div className="add-seller__radio-wrapper">
         <h3 className="add-seller__radio-title">¿Qué tipo de negocio tienes?</h3>
@@ -48,17 +51,21 @@ const AddSellerForm = () => {
 
       {radioOption === 'withLocation' && (
         <>
-          <TextInput name="sellerName" label="Nombre del negocio" register={register} />
-          <div className="add-seller__text-aux text-aux">
-            El nombre que elijas aparecerá en los comprobantes de pago y en las actividades de tus
-            compradores.
+          <div className="add-seller__store-address">
+            <TextInput name="storeAddress" label="Dirección" register={register} />
+            <div className="add-seller__text-aux text-aux">
+              El nombre que elijas aparecerá en los comprobantes de pago y en las actividades de tus
+              compradores.
+            </div>
           </div>
 
           <div className="add-seller__spacer-1"></div>
 
-          <TextInput name="category" label="Categoría" register={register} />
-          <div className="add-seller__text-aux text-aux">
-            Elige el rubro principal de tu negocio.
+          <div>
+            <TextInput name="storeAddressAddInfo" label="Datos extra" register={register} />
+            <div className="add-seller__text-aux text-aux">
+              Elige el rubro principal de tu negocio.
+            </div>
           </div>
         </>
       )}
