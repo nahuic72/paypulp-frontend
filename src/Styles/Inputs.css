@@ -58,3 +58,13 @@
   font-size: 13px;
 }
 
+/* overrides style change on autocomplete */
+input:-webkit-autofill {
+  -webkit-box-shadow:0 0 0 50px var(--bg) inset;
+  -webkit-text-fill-color: var(--white);
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px var(--bg) inset;
+  -webkit-text-fill-color: var(--white);
+} 
