@@ -1,8 +1,10 @@
 import TextInput from 'Components/Elements/TextInput'
 import useLogin from 'Hooks/useLogin'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 const FormLogin = ({ isOnGateway, setBuyerToken }) => {
+  const navigate = useNavigate()
   const { onSubmit } = useLogin(isOnGateway, setBuyerToken)
   const { register, handleSubmit } = useForm({
     mode: 'onTouched',
@@ -11,6 +13,8 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
       password: '1234Q@we',
     },
   })
+
+  const goToRegister = () => navigate('/signup')
 
   return (
     <>
@@ -27,7 +31,9 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
           <button className="btn btn-solid btn-long" onClick={handleSubmit}>
             Iniciar Sesión
           </button>
-          <button className="login-form__register-btn btn btn-text-only">Registrarse</button>
+          <button className="login-form__register-btn btn btn-text-only" onClick={goToRegister}>
+            Registrarse
+          </button>
         </div>
         <div className="login__social">
           <div className="MOCK-logo">icon</div>
