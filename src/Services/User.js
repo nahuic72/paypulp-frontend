@@ -7,8 +7,19 @@ class UserInfo {
 
   static getUserInfo = async () => {
     const token = localStorage.getItem('token')
-    const config = UserInfo.getConfig(token)
+    const config = this.getConfig(token)
     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/private/user`, config)
+    return res
+  }
+
+  static postSellerInfo = async (body) => {
+    const token = localStorage.getItem('token')
+    const config = this.getConfig(token)
+    const res = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/private/user/sellerinfo`,
+      body,
+      config,
+    )
     return res
   }
 }
