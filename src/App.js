@@ -13,6 +13,8 @@ import GatewayPage from 'Pages/GatewayPage.jsx'
 import LoginPage from 'Pages/Public/LoginPage'
 import Signup from 'Pages/Public/Signup'
 import Home from 'Pages/Private/Home'
+import QrGenPage from 'Pages/Private/QrGenPage'
+import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
 
 const checkForToken = () => {
   if (!localStorage.getItem('token')) {
@@ -26,7 +28,12 @@ const loginLoader = ({ params = {} } = {}) => {
   return { ...params, isOnGateway: false }
 }
 
-const gatewayLoader = ({ params }) => (params = { ...params, isOnGateway: true })
+const qrGenLoader = ({ params }) => {
+  if (params.accountType === 'personal') throw redirect('/addsellerinfo')
+  return params
+}
+
+const passParams = ({ params }) => params
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,11 +43,18 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} loader={loginLoader} />
       <Route loader={checkForToken}>
         <Route path="home" element={<Home />} />
+        <Route path="addsellerinfo" element={<AddSellerInfoPage />} />
+        <Route
+          path="qrgen/:accountType/:checkoutType"
+          element={<QrGenPage />}
+          loader={qrGenLoader}
+        />
       </Route>
-      <Route path="gateway/:slug" element={<GatewayPage />} loader={gatewayLoader} />,
+      <Route path="gateway/:slug" element={<GatewayPage />} loader={passParams} />,
     </Route>,
   ),
 )
+
 function App() {
   return <RouterProvider router={router} />
 }

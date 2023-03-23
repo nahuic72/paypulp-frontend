@@ -1,13 +1,24 @@
-import React from 'react'
+import { useNavigate } from 'react-router'
 
-const HomeActions = () => {
+const HomeActions = ({ accountType }) => {
+  const navigate = useNavigate()
+
+  const goToQrGen = (ch) => {
+    const url = `/qrgen/${accountType}/${ch}`
+    navigate(url)
+  }
+
   return (
     <div className="home-actions">
       <button className="btn btn-long btn-solid">Añadir método de pago</button>
       <div className="home-actions__bottom-btns">
         <div className="home-actions__bottom-btn">Pagar con QR</div>
-        <div className="home-actions__bottom-btn">Cobrar con QR</div>
-        <div className="home-actions__bottom-btn">Recibir donaciones</div>
+        <div className="home-actions__bottom-btn" onClick={() => goToQrGen(`fix`)}>
+          Cobrar con QR
+        </div>
+        <div className="home-actions__bottom-btn" onClick={() => goToQrGen(`don`)}>
+          Recibir donaciones
+        </div>
       </div>
     </div>
   )

@@ -80,6 +80,7 @@ h3 {
 
 .text-aux {
   font: 0.81rem 'Roboto', sans-serif;
+  line-height: 16px;
 }
 
 .link-aux {

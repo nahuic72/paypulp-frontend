@@ -7,7 +7,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
   const { register, handleSubmit } = useForm({
     mode: 'onTouched',
     defaultValues: {
-      email: '2@ratking.com',
+      email: '1@ratking.com',
       password: '1234Q@we',
     },
   })
