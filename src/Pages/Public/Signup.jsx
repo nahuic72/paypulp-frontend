@@ -1,8 +1,10 @@
+import HeaderLogin from 'Components/Login/HeaderLogin'
 import Registration1 from 'Components/Signup/Registration1'
 import Registration2 from 'Components/Signup/Registration2'
 import useSignup from 'Hooks/useSignup'
 import { useForm } from 'react-hook-form'
 import 'Styles/Auth.css'
+import 'Styles/Signup.css'
 
 const signupDefaultValues = {
   firstName: 'Robert',
@@ -32,30 +34,36 @@ export default function Signup() {
   })
 
   return (
-    <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
-      {page === 1 && (
-        <Registration1
-          setPage={setPage}
-          register={register}
-          watch={watch}
-          errors={errors}
-          isValid={isValid}
-        />
-      )}
-      {page === 2 && (
-        <Registration2
-          setPage={setPage}
-          register={register}
-          watch={watch}
-          errors={errors}
-          isValid={isValid}
-        />
-      )}
-      {page === 2 && (
-        <button className="btn btn-solid btn-long" disabled={!isValid}>
-          GUARDAR
-        </button>
-      )}
-    </form>
+    <div className="signup">
+      <div className="signup__header-wrapper">
+        <HeaderLogin />
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {page === 1 && (
+          <Registration1
+            setPage={setPage}
+            register={register}
+            watch={watch}
+            errors={errors}
+            isValid={isValid}
+          />
+        )}
+        {page === 2 && (
+          <Registration2
+            setPage={setPage}
+            register={register}
+            watch={watch}
+            errors={errors}
+            isValid={isValid}
+          />
+        )}
+        {page === 2 && (
+          <button className="btn btn-solid btn-long" disabled={!isValid}>
+            GUARDAR
+          </button>
+        )}
+      </form>
+    </div>
   )
 }
