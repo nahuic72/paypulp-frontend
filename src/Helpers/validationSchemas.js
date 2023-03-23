@@ -1,7 +1,8 @@
 export const signupSchema = (watch) => {
+  const requiredMsg = 'Campo obligatorio'
   return {
     shortText: {
-      required: 'Field required',
+      required: requiredMsg,
       minLength: {
         value: 2,
         message: 'This field should be at least 2 characters long',
@@ -12,7 +13,7 @@ export const signupSchema = (watch) => {
       },
     },
     longText: {
-      required: 'Field required',
+      required: requiredMsg,
       minLength: {
         value: 5,
         message: 'This field should be at least 5 characters long',
@@ -23,7 +24,7 @@ export const signupSchema = (watch) => {
       },
     },
     email: {
-      required: 'Field required',
+      required: requiredMsg,
       maxLength: {
         value: 80,
         message: 'This field should be less than 80 characters long',
@@ -34,7 +35,7 @@ export const signupSchema = (watch) => {
       },
     },
     password: {
-      required: 'Field required',
+      required: requiredMsg,
       minLength: {
         value: 8,
         message: 'Password needs to be more than 8 characters',
@@ -54,7 +55,7 @@ export const signupSchema = (watch) => {
     },
 
     date: {
-      required: 'Field required',
+      required: requiredMsg,
       minLength: {
         value: 3,
         message: 'This field should be at least 3 characters long',
@@ -65,7 +66,7 @@ export const signupSchema = (watch) => {
       },
     },
     phone: {
-      required: 'Field required',
+      required: requiredMsg,
       maxLength: {
         value: 20,
         message: 'This field should be less than 20 characters long',
@@ -73,7 +74,7 @@ export const signupSchema = (watch) => {
       pattern: { value: /^\d+$/, message: 'Not a valid phone format' },
     },
     url: {
-      required: 'Field required',
+      required: requiredMsg,
       maxLength: {
         value: 50,
         message: 'This field should be less than 50 characters long',

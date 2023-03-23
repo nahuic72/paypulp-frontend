@@ -9,7 +9,6 @@ export default function useGetUserInfo() {
       try {
         const { data } = await UserInfo.getUserInfo()
         setUser(data)
-        console.log(data)
       } catch (err) {
         console.log(err)
       }

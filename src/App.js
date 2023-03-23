@@ -29,7 +29,7 @@ const loginLoader = ({ params = {} } = {}) => {
 }
 
 const qrGenLoader = ({ params }) => {
-  if (params.accountType === 'personal') throw redirect('/addsellerinfo')
+  if (params.accountType === 'personal') throw redirect(`/addsellerinfo/${params.checkoutType}`)
   return params
 }
 
@@ -43,7 +43,11 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup />} loader={loginLoader} />
       <Route loader={checkForToken}>
         <Route path="home" element={<Home />} />
-        <Route path="addsellerinfo" element={<AddSellerInfoPage />} />
+        <Route
+          path="addsellerinfo/:checkoutType"
+          element={<AddSellerInfoPage />}
+          loader={passParams}
+        />
         <Route
           path="qrgen/:accountType/:checkoutType"
           element={<QrGenPage />}
