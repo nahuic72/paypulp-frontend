@@ -8,8 +8,12 @@ import Transactions from 'Services/Transactions'
 
 const useGateway = (slug) => {
   const navigate = useNavigate()
-  const [buyerToken, setBuyerToken] = useState(null)
-  const [transactionInfo, setTransactionInfo] = useState({})
+  const [buyerToken, setBuyerToken] = useState('fjhfj')
+  const [transactionInfo, setTransactionInfo] = useState({
+    sellerUuid: 'fjhfj',
+    checkoutType: 'fixed',
+    amount: 30,
+  })
   const [payMets, setPayMets] = useState([])
   const [isSubmit, setIsSubmit] = useState(null)
 

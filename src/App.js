@@ -1,3 +1,5 @@
+import toast, { Toaster } from 'react-hot-toast'
+import { useEffect, useState } from 'react'
 import QrPage from 'Pages/QrPage'
 import {
   createBrowserRouter,
@@ -16,9 +18,24 @@ import Home from 'Pages/Private/Home'
 import QrGenPage from 'Pages/Private/QrGenPage'
 import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
 
-const checkForToken = () => {
-  if (!localStorage.getItem('token')) {
+/* const checkForToken = () => {
+  if (!sessionStorage.getItem('token')) {
     throw redirect('/login')
+  }
+  return null
+} */
+
+const checkForToken = () => {
+  if (!sessionStorage.getItem('token')) {
+    window.location.href = '/login' 
+  }
+  return null
+}
+
+const goToLogin = () => {
+  const isDefaultPage = window.location.pathname === '/'
+  if (isDefaultPage) {
+    window.location.href = '/login'
   }
   return null
 }
@@ -33,14 +50,38 @@ const qrGenLoader = ({ params }) => {
   return params
 }
 
+const checkAlreadyAuthenticated = () => {
+  const token = sessionStorage.getItem('token')
+  const isLoginPage = window.location.pathname === '/login'
+  const isSignupPage = window.location.pathname === '/signup'
+
+  if (token) {
+    throw redirect('/home')
+  } else if (isLoginPage) {
+    return <LoginPage />
+  } else if (isSignupPage) {
+    return <Signup />
+  } else {
+    throw redirect('/login')
+  }
+}
+
 const passParams = ({ params }) => params
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainApp />}>
+    <Route path="/" element={<MainApp />} loader={goToLogin}>
       <Route path="qrpage" element={<QrPage />} />
-      <Route path="login" element={<LoginPage />} loader={loginLoader} />
-      <Route path="signup" element={<Signup />} loader={loginLoader} />
+      <Route
+        path="login"
+        element={<LoginPage />}
+        loader={checkAlreadyAuthenticated} /* loader={loginLoader}  */
+      />
+      <Route
+        path="signup"
+        element={<Signup />}
+        loader={checkAlreadyAuthenticated} /* loader={loginLoader}  */
+      />
       <Route loader={checkForToken}>
         <Route path="home" element={<Home />} />
         <Route

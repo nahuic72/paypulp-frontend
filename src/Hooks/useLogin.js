@@ -19,7 +19,7 @@ export default function useLogin(isOnGateway, setBuyerToken) {
       if (isOnGateway) {
         setBuyerToken(userToken)
       } else if (!isOnGateway) {
-        localStorage.setItem('token', userToken)
+        sessionStorage.setItem('token', userToken)
         navigate('/home')
       }
     } catch (error) {
