@@ -55,7 +55,7 @@ const router = createBrowserRouter(
         />
       </Route>
       <Route
-        path="gateway/:sellerUuid/:checkoutType/:amount"
+        path="gateway/:sellerUuid/:checkoutType/:totalAmount"
         element={<GatewayPage />}
         loader={passParams}
       />

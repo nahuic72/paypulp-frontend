@@ -3,7 +3,7 @@ import Seller from './Seller'
 
 const FixAmount = ({ totalAmount }) => {
   return (
-    <div className="MOCK checkout__transaction-info">
+    <div className="checkout__transaction-info">
       <Seller />
       <div className="checkout__fix-amount">
         <span>{totalAmount} €</span>

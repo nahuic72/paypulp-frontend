@@ -1,12 +1,15 @@
-import CardImage from 'Components/Elements/CardImage'
-import { useState } from 'react'
+import CardImageFunds from 'Components/Elements/CardImageFunds'
+import CardsArray from 'Components/Elements/CardsArray'
+import TextHeader from 'Components/Elements/TextHeader'
+import { isArrEmpty } from 'Helpers/ToBoolean'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import 'Styles/Checkout.css'
 import FixAmount from './CheckoutInfo/FixAmount'
 
-const Checkout = ({ transactionInfo, payMets, confirmTransaction }) => {
-  const navigate = useNavigate()
-  const { checkoutType, totalAmount } = transactionInfo
+const Checkout = ({ sellerInfo, payMets, funds, confirmTransaction }) => {
+  const { checkoutType, totalAmount } = sellerInfo
   const [isDisabled, setIsDisabled] = useState(false)
 
   const pay = () => {
@@ -14,27 +17,28 @@ const Checkout = ({ transactionInfo, payMets, confirmTransaction }) => {
     confirmTransaction()
   }
 
-  const goToApp = () => navigate('/login')
-
   return (
-    <div className="checkout__wrapper">
-      {checkoutType === 'fixed' && <FixAmount totalAmount={totalAmount} />}
-      <div className="checkout__cards">
-        {payMets ? (
-          <CardImage payMets={payMets} />
+    <>
+      <TextHeader text="Completa el checkout" />
+      <div className="checkout__wrapper">
+        {checkoutType === 'fixed' && <FixAmount totalAmount={totalAmount} />}
+
+        {payMets.length > 0 ? (
+          <CardsArray payMets={payMets} />
         ) : (
-          <div>You don&apos;t have any active payment methods</div>
+          <div className="checkout__no-cards">
+            <CardImageFunds funds={funds} key="c" />
+          </div>
         )}
-      </div>
-      <div className="checkout__btns">
-        <button className="btn btn-solid btn-long" onClick={pay} disabled={isDisabled}>
+
+        <button
+          className="checkout__pay-btn btn btn-solid btn-long"
+          onClick={pay}
+          disabled={isDisabled}>
           PAGAR
         </button>
-        <button className="btn btn-text-only btn-short" onClick={goToApp}>
-          cancelar
-        </button>
       </div>
-    </div>
+    </>
   )
 }
 
