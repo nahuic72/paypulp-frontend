@@ -15,6 +15,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
     <div>
       <div className="signup-call__wrapper">
         <svg
+          onClick={goToLogin}
           width="11"
           height="20"
           viewBox="0 0 11 20"
@@ -82,10 +83,6 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
         <div className="checkout__btns">
           <button className="btn btn-solid btn-long" onClick={() => setPage(2)} disabled={!isValid}>
             REGISTRARSE
-          </button>
-
-          <button className="btn btn-text-only btn-short" onClick={goToLogin}>
-            Prefiero iniciar sesíon
           </button>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import TextHeader from 'Components/Elements/TextHeader'
 import HeaderLogin from 'Components/Login/HeaderLogin'
 import Registration1 from 'Components/Signup/Registration1'
 import Registration2 from 'Components/Signup/Registration2'
@@ -35,33 +36,32 @@ export default function Signup() {
 
   return (
     <div className="signup">
-      <div className="signup__header-wrapper">
-        <HeaderLogin />
-      </div>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         {page === 1 && (
-          <Registration1
-            setPage={setPage}
-            register={register}
-            watch={watch}
-            errors={errors}
-            isValid={isValid}
-          />
+          <div>
+            <div className="signup__header-wrapper">
+              <HeaderLogin />
+            </div>
+            <Registration1
+              setPage={setPage}
+              register={register}
+              watch={watch}
+              errors={errors}
+              isValid={isValid}
+            />
+          </div>
         )}
+
         {page === 2 && (
-          <Registration2
-            setPage={setPage}
-            register={register}
-            watch={watch}
-            errors={errors}
-            isValid={isValid}
-          />
-        )}
-        {page === 2 && (
-          <button className="btn btn-solid btn-long" disabled={!isValid}>
-            GUARDAR
-          </button>
+          <div>
+            <Registration2
+              setPage={setPage}
+              register={register}
+              watch={watch}
+              errors={errors}
+              isValid={isValid}
+            />
+          </div>
         )}
       </form>
     </div>
