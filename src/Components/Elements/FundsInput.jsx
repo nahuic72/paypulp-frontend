@@ -1,11 +1,13 @@
-const FundsInput = ({ name, label, isDisabled = false, register, validationType }) => {
+const FundsInput = ({ name, label, isDisabled = false, handleChange = null }) => {
   return (
     <div className="funds-input__wrapper">
       <label htmlFor={name}>{label}</label>
       <input
-        type="text"
+        className="funds-input"
+        type="number"
         name={name}
-        disabled={isDisabled} /* {...register(name, validationType)} */
+        disabled={isDisabled}
+        onChange={(e) => handleChange(e.target.value)}
       />
     </div>
   )

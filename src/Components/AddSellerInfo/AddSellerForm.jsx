@@ -41,7 +41,7 @@ const AddSellerForm = () => {
       const res = await UserInfo.postSellerInfo(body)
       if (res.status === 200) toast.success('Tu perfil ha sido actualizado!')
 
-      const url = `/qrgen/ok/${params.checkoutType}`
+      const url = `/qrgen/seller/${params.checkoutType}`
       navigate(url)
     } catch (err) {
       const errMsg = err.response ? err.response.data.error : err.code

@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router'
 const HomeActions = ({ accountType }) => {
   const navigate = useNavigate()
 
-  const goToQrGen = (ch) => {
-    const url = `/qrgen/${accountType}/${ch}`
+  const goToQrGen = (checkoutType) => {
+    const url = `/qrgen/${accountType}/${checkoutType}`
     navigate(url)
   }
 

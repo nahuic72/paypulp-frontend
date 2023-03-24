@@ -1,0 +1,28 @@
+.qr-gen {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 16px 85px 16px;
+}
+
+.qr-gen__input-wrapper {
+  width: 100%;
+} 
+
+.qr-gen__text-aux {
+  padding: 0 0 0 27px;
+  color: var(--diasble);
+}
+
+.qr-gen__call-text {
+  padding: 0 25px;
+  text-align: center;
+}
+
+.qr-gen__cancel-btn {
+  color: var(--white);
+  text-decoration: underline;
+  font-size: 13px;
+}

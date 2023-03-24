@@ -54,7 +54,12 @@ const router = createBrowserRouter(
           loader={qrGenLoader}
         />
       </Route>
-      <Route path="gateway/:slug" element={<GatewayPage />} loader={passParams} />,
+      <Route
+        path="gateway/:sellerUuid/:checkoutType/:amount"
+        element={<GatewayPage />}
+        loader={passParams}
+      />
+      ,
     </Route>,
   ),
 )
