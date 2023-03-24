@@ -4,7 +4,6 @@ import CardImageFunds from './CardImageFunds'
 
 const CardsArray = ({ funds }) => {
   const [position, setPosition] = useState(['cards__first', 'cards__second', 'cards__third'])
-  // let position = ['cards__first', 'cards__second', 'cards__third']
 
   const rotate = () => {
     const arr = position
