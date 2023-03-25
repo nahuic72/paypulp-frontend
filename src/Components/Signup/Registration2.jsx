@@ -17,11 +17,13 @@ const Registration2 = ({ register, setPage, watch, errors, isValid }) => {
     { name: 'Prefiero no contestar', id: 6 },
   ]
 
-  const goToLogin = () => navigate('/login')
+  const goToRegistration1 = () => {
+    setPage(1)
+  }
 
   return (
     <>
-      <TextHeader text="Completa tu información" navigate={goToLogin} />
+      <TextHeader text="Completa tu información" navigate={goToRegistration1} />
 
       <div className="signup__form">
         <div className="signup-form__inputs">
@@ -71,7 +73,7 @@ const Registration2 = ({ register, setPage, watch, errors, isValid }) => {
           />
         </div>
 
-        <div className="checkout__btns">
+        <div className="signup-button__spacing">
           <button className="btn btn-solid btn-long" disabled={!isValid}>
             GUARDAR
           </button>
