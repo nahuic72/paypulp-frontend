@@ -1,5 +1,3 @@
-import toast, { Toaster } from 'react-hot-toast'
-import { useEffect, useState } from 'react'
 import QrPage from 'Pages/QrPage'
 import {
   createBrowserRouter,
@@ -18,13 +16,6 @@ import Home from 'Pages/Private/Home'
 import QrGenPage from 'Pages/Private/QrGenPage'
 import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
 
-/* const checkForToken = () => {
-  if (!sessionStorage.getItem('token')) {
-    throw redirect('/login')
-  }
-  return null
-} */
-
 const checkForToken = () => {
   if (!sessionStorage.getItem('token')) {
     window.location.href = '/login'
@@ -38,11 +29,6 @@ const goToLogin = () => {
     window.location.href = '/login'
   }
   return null
-}
-
-const loginLoader = ({ params = {} } = {}) => {
-  // proper check for token
-  return { ...params, isOnGateway: false }
 }
 
 const qrGenLoader = ({ params }) => {
@@ -63,17 +49,9 @@ const passParams = ({ params }) => params
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainApp />} loader={goToLogin}>
-      <Route path="qrpage" element={<QrPage />} />
-      <Route
-        path="login"
-        element={<LoginPage />}
-        loader={checkAlreadyAuthenticated} /* loader={loginLoader}  */
-      />
-      <Route
-        path="signup"
-        element={<Signup />}
-        loader={checkAlreadyAuthenticated} /* loader={loginLoader}  */
-      />
+      <Route path="qrpage" element={<QrPage />} /> {/* test only */}
+      <Route path="login" element={<LoginPage />} loader={checkAlreadyAuthenticated} />
+      <Route path="signup" element={<Signup />} loader={checkAlreadyAuthenticated} />
       <Route loader={checkForToken}>
         <Route path="home" element={<Home />} />
         <Route
@@ -92,8 +70,8 @@ const router = createBrowserRouter(
         element={<GatewayPage />}
         loader={passParams}
       />
-    </Route>
-  )
+    </Route>,
+  ),
 )
 
 function App() {

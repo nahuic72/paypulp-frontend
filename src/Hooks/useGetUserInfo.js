@@ -1,5 +1,6 @@
 import { userContext } from 'Context/UserContext'
 import { useContext, useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 import UserInfo from 'Services/User'
 
 export default function useGetUserInfo() {
@@ -11,7 +12,9 @@ export default function useGetUserInfo() {
         const { data } = await UserInfo.getUserInfo()
         setUserCtxt(data)
       } catch (err) {
-        console.log(err)
+        toast.error(
+          'Ha habido un problema accediendo a tu informacion. Intentalo de nuevo mas tarde',
+        )
       }
     }
     getData()
