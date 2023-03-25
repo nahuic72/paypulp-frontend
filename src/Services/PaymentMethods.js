@@ -7,7 +7,7 @@ export default class PaymentMethods {
 
   static getPayMets = async (tkn) => {
     const baseUrl = process.env.REACT_APP_BASE_URL
-    const token = localStorage.getItem('token') || tkn
+    const token = sessionStorage.getItem('token') || tkn
     const config = this.getConfig(token)
 
     const res = await axios.get(`${baseUrl}/private/user/paymethods`, config)
