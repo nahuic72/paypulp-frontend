@@ -27,8 +27,12 @@ const useSignup = () => {
       }
     } catch (error) {
       const msg = error.response.data
-      // show error msg
-      toast.error('Se produjo un error. Por favor, vuelve a intentarlo más tarde.')
+      if (msg === 'Email already in use') {
+        toast.error('El correo electrónico ya está registrado.')
+      } else {
+        // show error msg
+        toast.error('Se produjo un error. Por favor, vuelve a intentarlo más tarde.')
+      }
     }
   }
 
