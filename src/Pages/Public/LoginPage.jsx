@@ -3,9 +3,7 @@ import { useLoaderData } from 'react-router-dom'
 import 'Styles/Auth.css'
 
 const LoginPage = () => {
-  const { isOnGateway } = useLoaderData() // get query queryParams (if logging on gateway or main app)
-
-  return <Login isOnGateway={isOnGateway} />
+  return <Login />
 }
 
 export default LoginPage

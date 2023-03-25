@@ -17,15 +17,18 @@ import QrGenPage from 'Pages/Private/QrGenPage'
 import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
 
 const checkForToken = () => {
-  if (!localStorage.getItem('token')) {
-    throw redirect('/login')
+  if (!sessionStorage.getItem('token')) {
+    window.location.href = '/login'
   }
   return null
 }
 
-const loginLoader = ({ params = {} } = {}) => {
-  // proper check for token
-  return { ...params, isOnGateway: false }
+const goToLogin = () => {
+  const isDefaultPage = window.location.pathname === '/'
+  if (isDefaultPage) {
+    window.location.href = '/login'
+  }
+  return null
 }
 
 const qrGenLoader = ({ params }) => {
@@ -33,14 +36,22 @@ const qrGenLoader = ({ params }) => {
   return params
 }
 
+const checkAlreadyAuthenticated = () => {
+  const token = sessionStorage.getItem('token')
+  if (token) {
+    throw redirect('/home')
+  }
+  return null
+}
+
 const passParams = ({ params }) => params
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainApp />}>
-      <Route path="qrpage" element={<QrPage />} />
-      <Route path="login" element={<LoginPage />} loader={loginLoader} />
-      <Route path="signup" element={<Signup />} loader={loginLoader} />
+    <Route path="/" element={<MainApp />} loader={goToLogin}>
+      <Route path="qrpage" element={<QrPage />} /> {/* test only */}
+      <Route path="login" element={<LoginPage />} loader={checkAlreadyAuthenticated} />
+      <Route path="signup" element={<Signup />} loader={checkAlreadyAuthenticated} />
       <Route loader={checkForToken}>
         <Route path="home" element={<Home />} />
         <Route
@@ -59,7 +70,6 @@ const router = createBrowserRouter(
         element={<GatewayPage />}
         loader={passParams}
       />
-      ,
     </Route>,
   ),
 )

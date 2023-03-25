@@ -3,9 +3,9 @@ import useLogin from 'Hooks/useLogin'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-const FormLogin = ({ isOnGateway, setBuyerToken }) => {
+const FormLogin = ({ setBuyerToken }) => {
   const navigate = useNavigate()
-  const { onSubmit } = useLogin(isOnGateway, setBuyerToken)
+  const { onSubmit } = useLogin(setBuyerToken)
   const { register, handleSubmit } = useForm({
     mode: 'onTouched',
     defaultValues: {
@@ -22,7 +22,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
         <h2 className="login__call">Inicia sesión para continuar</h2>
         <div className="login-form__inputs">
           <TextInput name="email" label="Email" register={register} />
-          <TextInput name="password" label="Contraseña" register={register} />
+          <TextInput type="password" name="password" label="Contraseña" register={register} />
         </div>
         <div className="login__forgot-pass">
           <button className="btn-text-only">Olvide mi contraseña</button>
