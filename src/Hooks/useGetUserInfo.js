@@ -1,9 +1,12 @@
 import { userContext } from 'Context/UserContext'
 import { useContext, useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
+import PaymentMethods from 'Services/PaymentMethods'
 import UserInfo from 'Services/User'
 
 export default function useGetUserInfo() {
   const { userCtxt, setUserCtxt } = useContext(userContext)
+  const [payMets, setPayMets] = useState([])
 
   useEffect(() => {
     const getData = async () => {
@@ -12,12 +15,22 @@ export default function useGetUserInfo() {
         setUserCtxt(data)
       } catch (err) {
         console.log(err)
+        toast.error('Ha habido un error accediendo a tu informacion de usuario')
       }
     }
     getData()
 
-    // get pyment methods
+    const getUserPayMets = async () => {
+      try {
+        const { data } = await PaymentMethods.getPayMets()
+        setPayMets(data)
+      } catch (err) {
+        console.log(err)
+        toast.error('Ha habido un error accediendo a tus metodos de pago')
+      }
+    }
+    getUserPayMets()
   }, [])
 
-  return { userCtxt }
+  return { userCtxt, payMets }
 }

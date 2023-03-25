@@ -5,13 +5,13 @@ import HomeHeader from 'Components/Home/HomeHeader'
 import useGetUserInfo from 'Hooks/useGetUserInfo'
 
 const Home = () => {
-  const { userCtxt } = useGetUserInfo()
+  const { userCtxt, payMets } = useGetUserInfo()
 
   return (
     <>
       <HomeHeader name={userCtxt.firstName} />
       <HomeFunds funds={userCtxt.funds} />
-      <CardsArray funds={userCtxt.funds} />
+      <CardsArray funds={userCtxt.funds} payMets={payMets} />
       <HomeActions accountType={userCtxt.accountType} />
     </>
   )
