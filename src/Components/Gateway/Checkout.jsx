@@ -1,10 +1,7 @@
 import CardImageFunds from 'Components/Elements/CardImageFunds'
 import CardsArray from 'Components/Elements/CardsArray'
 import TextHeader from 'Components/Elements/TextHeader'
-import { isArrEmpty } from 'Helpers/ToBoolean'
-import { useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import 'Styles/Checkout.css'
 import FixAmount from './CheckoutInfo/FixAmount'
 
