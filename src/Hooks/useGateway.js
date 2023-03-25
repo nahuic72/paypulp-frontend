@@ -76,8 +76,11 @@ const useGateway = (sellerInfo) => {
     }
   }
 
-  const confirmTransaction = async () => {
+  const confirmTransaction = async (payMet) => {
+    const pMetId = payMet === 'buyer_funds' ? payMet : payMet.paymentMethodUuid
+
     const updateInfo = {
+      paymentMethodUuid: pMetId,
       transactionUuid: transactionInfo.transactionUuid,
       userCompleted: true,
       wentThrough: true,
