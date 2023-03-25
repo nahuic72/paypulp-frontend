@@ -14,13 +14,13 @@ const CardImage = ({ gradient, position, cardInfo }) => {
   return (
     <div className={`card ${gradient} ${position}`}>
       <div className="card__top-info">
-        <div className="card__text">Credit Card</div>
+        <div className="card__top-text">Credit Card</div>
         <div className="card__text">Logo</div>
       </div>
       <div className="card__number">{formatCardNumber(cardNumber)}</div>
       <div className="card__bottom-info">
         <div className="card__text">{cardOwnerName}</div>
-        <div className="card__text">00/00</div>
+        <div className="card__text">**/**</div>
       </div>
     </div>
   )
