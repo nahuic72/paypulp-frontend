@@ -14,8 +14,22 @@ const CardsArray = ({ payMets = null, funds }) => {
 
   return (
     <div className="home-cards" onClick={rotate}>
-      <CardImage position={position[2]} gradient="card__gradient--2" key="a" />
-      <CardImage position={position[1]} gradient="card__gradient--1" key="b" />
+      {payMets.length >= 3 && (
+        <CardImage
+          position={position[2]}
+          cardInfo={payMets[1]}
+          gradient="card__gradient--2"
+          key="a"
+        />
+      )}
+      {payMets.length >= 2 && (
+        <CardImage
+          position={position[1]}
+          cardInfo={payMets[0]}
+          gradient="card__gradient--1"
+          key="b"
+        />
+      )}
       <CardImageFunds position={position[0]} funds={funds} key="c" />
     </div>
   )
