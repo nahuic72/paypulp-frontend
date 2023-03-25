@@ -27,7 +27,7 @@ import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
 
 const checkForToken = () => {
   if (!sessionStorage.getItem('token')) {
-    window.location.href = '/login' 
+    window.location.href = '/login'
   }
   return null
 }
@@ -52,17 +52,8 @@ const qrGenLoader = ({ params }) => {
 
 const checkAlreadyAuthenticated = () => {
   const token = sessionStorage.getItem('token')
-  const isLoginPage = window.location.pathname === '/login'
-  const isSignupPage = window.location.pathname === '/signup'
-
   if (token) {
     throw redirect('/home')
-  } else if (isLoginPage) {
-    return <LoginPage />
-  } else if (isSignupPage) {
-    return <Signup />
-  } else {
-    throw redirect('/login')
   }
 }
 
