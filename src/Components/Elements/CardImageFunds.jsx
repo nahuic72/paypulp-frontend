@@ -3,14 +3,6 @@ import { useContext } from 'react'
 import 'Styles/CardImage.css'
 
 const CardImageFunds = ({ funds, position }) => {
-  // const { userInfo, paymentMethods } = useContext(userContext)
-
-  const formatCardNumber = (cardNumber) => {
-    const length = cardNumber.length
-    const lastNums = cardNumber.substring(length - 5, length - 1)
-    return `**** **** **** ${lastNums}`
-  }
-
   return (
     <div className={`card-funds card-funds__gradient ${position}`}>
       <div className="card-funds__top-info">
