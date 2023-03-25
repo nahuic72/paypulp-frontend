@@ -1,4 +1,5 @@
 import QrPage from 'Pages/QrPage'
+import axios from 'axios'
 import {
   createBrowserRouter,
   Route,
@@ -16,11 +17,41 @@ import Home from 'Pages/Private/Home'
 import QrGenPage from 'Pages/Private/QrGenPage'
 import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
 
-const checkForToken = () => {
-  if (!sessionStorage.getItem('token')) {
+const checkForToken = async () => {
+  const token = sessionStorage.getItem('token')
+
+  if (!token) {
     window.location.href = '/login'
+    return null
   }
-  return null
+
+  const url = `${process.env.REACT_APP_BASE_URL}/private/user/validatetoken`
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: token,
+      },
+    })
+
+    if (response.status === 200) {
+      return null
+    } else if (response.status === 401) {
+      sessionStorage.removeItem('token')
+      window.location.href = '/login?error=Unauthorized'
+      return null
+    } else {
+      throw new Error(`Unexpected status code: ${response.status}`)
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      sessionStorage.removeItem('token')
+      window.location.href = '/login?error=Unauthorized'
+    } else {
+      window.location.href = '/login?error=UnexpectedError'
+    }
+    return null
+  }
 }
 
 const goToLogin = () => {
