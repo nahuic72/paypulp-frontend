@@ -20,7 +20,7 @@ const Checkout = ({ sellerInfo, payMets, funds, confirmTransaction }) => {
 
   const pay = () => {
     setIsDisabled(true)
-    if (position[0] === 'cards__first') confirmTransaction('buyer_funds')
+    if (position[0] === 'cards__first') confirmTransaction('buyerFunds')
     if (position[0] === 'cards__second') confirmTransaction(payMets[0])
     if (position[0] === 'cards__third') confirmTransaction(payMets[1])
   }
