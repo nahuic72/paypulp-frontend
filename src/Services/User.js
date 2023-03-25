@@ -6,14 +6,14 @@ class UserInfo {
   }
 
   static getUserInfo = async (tkn) => {
-    const token = localStorage.getItem('token') || tkn
+    const token = sessionStorage.getItem('token') || tkn
     const config = this.getConfig(token)
     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/private/user`, config)
     return res
   }
 
   static postSellerInfo = async (body) => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     const config = this.getConfig(token)
     const res = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/private/user/sellerinfo`,

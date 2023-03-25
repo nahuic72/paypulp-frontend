@@ -6,7 +6,7 @@ class Gateway {
   }
 
   static confirmPayment = async (transactionInfo) => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     const config = this.getConfig(token)
 
     try {

@@ -10,7 +10,7 @@ export default function useTokenValidation() {
 
   // if token is active, get customer info
   useEffect(() => {
-    if (localStorage.getItem('token') && Object.keys(userInfo).length === 0) {
+    if (sessionStorage.getItem('token') && Object.keys(userInfo).length === 0) {
       const getUserInfo = async () => {
         try {
           const res = await UserInfo.getUserInfo()
@@ -18,7 +18,7 @@ export default function useTokenValidation() {
           setPaymentMethods(res.data.paymentMethods)
         } catch (error) {
           console.error(error)
-          localStorage.clear()
+          sessionStorage.clear()
           setUserInfo({})
           setTransactions([])
           setPaymentMethods([])

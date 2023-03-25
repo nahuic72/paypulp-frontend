@@ -55,6 +55,7 @@ const checkAlreadyAuthenticated = () => {
   if (token) {
     throw redirect('/home')
   }
+  return null
 }
 
 const passParams = ({ params }) => params
@@ -91,9 +92,8 @@ const router = createBrowserRouter(
         element={<GatewayPage />}
         loader={passParams}
       />
-      ,
-    </Route>,
-  ),
+    </Route>
+  )
 )
 
 function App() {
