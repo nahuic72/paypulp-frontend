@@ -51,7 +51,7 @@ const useGateway = (sellerInfo) => {
 
   const getPayMets = async (token) => {
     try {
-      const res = await PaymentMethods.getPayMetsGateway(token)
+      const res = await PaymentMethods.getPayMets(token)
       return res.data
     } catch (error) {
       handleError()
