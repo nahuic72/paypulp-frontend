@@ -22,7 +22,7 @@ const FormLogin = ({ isOnGateway, setBuyerToken }) => {
         <h2 className="login__call">Inicia sesión para continuar</h2>
         <div className="login-form__inputs">
           <TextInput name="email" label="Email" register={register} />
-          <TextInput name="password" label="Contraseña" register={register} />
+          <TextInput type="password" name="password" label="Contraseña" register={register} />
         </div>
         <div className="login__forgot-pass">
           <button className="btn-text-only">Olvide mi contraseña</button>
