@@ -14,8 +14,7 @@
   background-color: var(--bg);
   padding: 4px;
   color: var(--secondary);
-  border-radius: var(--radius
-  );
+  border-radius: var(--radius);
 }
 
 .text-input__wrapper input {
@@ -43,15 +42,24 @@
 .funds-input__wrapper {
   display: flex;
   padding: 0 1rem;
-  width: 80%;
-  border-bottom: 1px solid lightgray;
+  width: 100%;
+  border-bottom: 1px solid var(--primary);
   position: relative;
 }
 
-.funds-input__wrapper input {
-  width: 100%;
-  text-align: center;
+.funds-input__wrapper label {
+  color: var(--white);
+  padding: 0 0 0 30px;
+  font: var(--text-h3);
 }
+
+.funds-input__wrapper input {
+  padding: 0 0 3px .5rem;
+  width: 100%;
+  display: flex;
+  font: var(--text-h3);
+}
+
 
 .text-input__error {
   color: red;
@@ -60,11 +68,11 @@
 
 /* overrides style change on autocomplete */
 input:-webkit-autofill {
-  -webkit-box-shadow:0 0 0 50px var(--bg) inset;
+  -webkit-box-shadow: 0 0 0 50px var(--bg) inset;
   -webkit-text-fill-color: var(--white);
 }
 
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 50px var(--bg) inset;
   -webkit-text-fill-color: var(--white);
-} 
+}

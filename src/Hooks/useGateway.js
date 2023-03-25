@@ -1,107 +1,69 @@
-import { isObjEmpty } from 'Helpers/ToBoolean'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import PaymentMethods from 'Services/PaymentMethods'
-import QrLinksReqs from 'Services/QrLinks'
 import Transactions from 'Services/Transactions'
+import UserInfo from 'Services/User'
 
-const useGateway = (slug) => {
+const useGateway = (sellerInfo) => {
   const navigate = useNavigate()
-  const [buyerToken, setBuyerToken] = useState('fjhfj')
-  const [transactionInfo, setTransactionInfo] = useState({
-    sellerUuid: 'fjhfj',
-    checkoutType: 'fixed',
-    amount: 30,
-  })
+  const [buyerToken, setBuyerToken] = useState(null)
+  const [transactionInfo, setTransactionInfo] = useState({ ...sellerInfo })
+  const [funds, setFunds] = useState(null)
   const [payMets, setPayMets] = useState([])
-  const [isSubmit, setIsSubmit] = useState(null)
 
   useEffect(() => {
-    if (buyerToken && !isSubmit) {
+    if (buyerToken) {
       const req = async () => {
-        await getTransactionInfo()
-      }
-      req()
-    }
-  }, [buyerToken, isSubmit])
+        const { funds, payMets } = await getBuyerInfo()
 
-  useEffect(() => {
-    if (!isObjEmpty(transactionInfo)) {
-      const req = async () => {
-        try {
-          const res = await postTransaction(transactionInfo, buyerToken)
-          const addInfo = {
-            ...transactionInfo,
-            transactionUuid: res.transactionUuid,
-          }
-          setTransactionInfo(addInfo)
-        } catch (error) {
-          console.error(error)
+        canAffordPurschase(funds, payMets)
+
+        const res = await postTransaction(sellerInfo, buyerToken)
+        const addTransInfo = {
+          ...transactionInfo,
+          transactionUuid: res.transactionUuid,
         }
+
+        setFunds(funds)
+        setPayMets(payMets)
+        setTransactionInfo(addTransInfo)
       }
       req()
     }
-  }, [transactionInfo.sellerUuid])
+  }, [buyerToken])
 
-  const confirmTransaction = async (tranUuid) => {
-    const req = async () => {
-      const updateInfo = {
-        transactionUuid: tranUuid,
-        userCompleted: true,
-        wentThrough: true,
-      }
-      setIsSubmit('loading')
-
-      try {
-        await Transactions.confirmTransaction(updateInfo, buyerToken)
-        setIsSubmit('success')
-      } catch (error) {
-        handleError()
-      }
-    }
-
-    const toastMsgs = {
-      loading: 'Procesando el pago...',
-      success: <b>Compra realizada!</b>,
-      error: <b>Ha habido un error</b>,
-    }
-    const toastOpts = {
-      success: {
-        duration: 5000,
-      },
-    }
-
-    await toast.promise(req(), toastMsgs, toastOpts)
-    setTimeout(() => navigate('/'), 5000)
+  const getBuyerInfo = async () => {
+    const { funds } = await getUserFunds(buyerToken)
+    const payMets = await getPayMets(buyerToken)
+    return { funds, payMets }
   }
 
-  const getTransactionInfo = async () => {
-    const resQrInfo = await getQrInfo(slug, buyerToken)
-    if (!resQrInfo) return
-    const resPayMets = await getPayMets(buyerToken)
-    if (!resPayMets) return
-    setTransactionInfo(resQrInfo)
-    setPayMets(resPayMets)
-  }
-
-  const getQrInfo = async (slug, token) => {
+  const getUserFunds = async (token) => {
     try {
-      const res = await QrLinksReqs.getQrLinkInfo(slug, token)
-
-      return res.data[0]
+      const res = await UserInfo.getUserInfo(token)
+      return res.data
     } catch (error) {
-      const msg = 'Codigo QR obsoleto'
-      handleError(error, msg)
+      handleError(error)
     }
   }
 
   const getPayMets = async (token) => {
     try {
-      const res = await PaymentMethods.getPayMetsGateway(token)
+      const res = await PaymentMethods.getPayMets(token)
       return res.data
     } catch (error) {
-      handleError(error)
+      handleError()
+    }
+  }
+
+  const canAffordPurschase = (funds, payMets) => {
+    const hasPayMets = !!payMets.length
+    const hasEnoughFunds = parseInt(funds) > parseInt(sellerInfo.totalAmount)
+
+    if (!hasPayMets && !hasEnoughFunds) {
+      resetPage()
+      toast.error('No tienes fondos suficientes para realizar esta compra')
     }
   }
 
@@ -113,6 +75,32 @@ const useGateway = (slug) => {
       handleError(error)
     }
   }
+
+  const confirmTransaction = async () => {
+    const updateInfo = {
+      transactionUuid: transactionInfo.transactionUuid,
+      userCompleted: true,
+      wentThrough: true,
+    }
+    const toastId = toast.loading('Enviando datos...')
+
+    try {
+      await Transactions.confirmTransaction(updateInfo, buyerToken)
+      handlePurchaseSuccess(toastId)
+    } catch (error) {
+      handleError()
+    }
+  }
+
+  const handlePurchaseSuccess = (toastId) => {
+    const toastOpts = {
+      duration: 5000,
+      id: toastId,
+    }
+    toast.success('Pago realizado correctamente', toastOpts)
+    setTimeout(() => navigate('/home'), 2500)
+  }
+
   const handleError = (err, msg) => {
     resetPage()
     const status = err.response.status
@@ -124,7 +112,6 @@ const useGateway = (slug) => {
     setBuyerToken(null)
     setTransactionInfo({})
     setPayMets([])
-    setIsSubmit(null)
   }
 
   const isUserAuth = (status) => {
@@ -134,12 +121,19 @@ const useGateway = (slug) => {
   }
 
   const isResourceFound = (status, msg = null) => {
-    if (status === 404) {
+    if (status === 404 || status === 400) {
       toast.error(msg || 'Algo salio mal. Intentelo de nuevo en unos minutos.')
     }
   }
 
-  return { buyerToken, setBuyerToken, transactionInfo, payMets, isSubmit, confirmTransaction }
+  return {
+    buyerToken,
+    setBuyerToken,
+    funds,
+    transactionInfo,
+    payMets,
+    confirmTransaction,
+  }
 }
 
 export default useGateway

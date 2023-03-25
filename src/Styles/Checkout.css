@@ -1,48 +1,61 @@
-.MOCK {
-  border: 2px solid black;
-}
-
 .checkout__wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
-  gap: 2rem;
+  flex: 1 1 auto;
+  padding: 0 16px;
 }
 
 .checkout__transaction-info {
-  margin: 4rem 0 0 0;
-  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 197px;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  margin-top: 21px;
 }
 
 .checkout__seller-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 66%;
   gap: 1rem;
+  margin-top: 16px;
+}
+
+.checkout__avatar {
+  height: 72px;
+  width: 72px;
 }
 
 .checkout__fix-amount {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .5rem 0 0 0;
-  font-size: 2rem;
+  padding: 0 0 14px 0;
+  font: 600 2rem 'Blinker', 'Roboto', sans-serif;
 }
 
-.checkout__cards {
-  height: 10rem;
-  display: flex;
+.checkout__fix-amount span {
+  font: inherit;
+}
+
+.checkout__no-cards {
+  display: grid;
   justify-content: center;
 }
 
-.checkout__btns {
-  height: 10rem;
+.checkout__paymets-msg{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1.5rem 0 0 0;
+  height: 328px;
+}
+
+.checkout__pay-btn {
+  margin: 0 0 30px 0;
 }

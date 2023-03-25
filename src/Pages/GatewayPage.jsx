@@ -1,21 +1,21 @@
 import { useLoaderData } from 'react-router-dom'
 import Login from 'Components/Login/Login'
 import Checkout from 'Components/Gateway/Checkout'
-import { isObjEmpty } from 'Helpers/ToBoolean'
 import useGateway from 'Hooks/useGateway'
 
 const GatewayPage = () => {
-  const { slug } = useLoaderData()
-  const { buyerToken, setBuyerToken, transactionInfo, payMets, isSubmit, confirmTransaction } =
-    useGateway(slug)
+  const sellerInfo = useLoaderData()
+  const { buyerToken, setBuyerToken, funds, payMets, isSubmit, confirmTransaction } =
+    useGateway(sellerInfo)
 
   return (
     <>
       {!buyerToken && !isSubmit && <Login isOnGateway={true} setBuyerToken={setBuyerToken} />}
-      {buyerToken && !isObjEmpty(transactionInfo) && (
+      {buyerToken && (
         <Checkout
-          transactionInfo={transactionInfo}
+          sellerInfo={sellerInfo}
           payMets={payMets}
+          funds={funds}
           confirmTransaction={confirmTransaction}
         />
       )}

@@ -27,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  padding: 35px 16px 0 16px;
+  padding: 35px 16px 24px 16px;
 }
 
 .home-funds__transactions-btn {
@@ -39,7 +39,6 @@
   display: grid;
   justify-content: center;
   grid-template-rows: 40px 40px 1fr;
-  padding: 24px 0 0 0;
 }
 
 .home-actions {

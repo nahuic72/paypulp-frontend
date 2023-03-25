@@ -2,9 +2,8 @@ import { useState } from 'react'
 import CardImage from './CardImage'
 import CardImageFunds from './CardImageFunds'
 
-const CardsArray = ({ funds }) => {
+const CardsArray = ({ payMets = null, funds }) => {
   const [position, setPosition] = useState(['cards__first', 'cards__second', 'cards__third'])
-  // let position = ['cards__first', 'cards__second', 'cards__third']
 
   const rotate = () => {
     const arr = position
