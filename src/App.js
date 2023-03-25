@@ -55,6 +55,7 @@ const checkAlreadyAuthenticated = () => {
   if (token) {
     throw redirect('/home')
   }
+  return null
 }
 
 const passParams = ({ params }) => params
