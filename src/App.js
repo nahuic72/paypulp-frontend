@@ -92,9 +92,8 @@ const router = createBrowserRouter(
         element={<GatewayPage />}
         loader={passParams}
       />
-      ,
-    </Route>,
-  ),
+    </Route>
+  )
 )
 
 function App() {
