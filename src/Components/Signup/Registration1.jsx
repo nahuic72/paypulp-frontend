@@ -80,7 +80,7 @@ const Registration1 = ({ register, setPage, watch, errors, isValid }) => {
           />
         </div>
 
-        <div className="checkout__btns">
+        <div className="signup-button__spacing">
           <button className="btn btn-solid btn-long" onClick={() => setPage(2)} disabled={!isValid}>
             REGISTRARSE
           </button>

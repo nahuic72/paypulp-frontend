@@ -43,3 +43,7 @@ top: 149px;
   flex-direction: column;
   gap: 20px;
 }
+
+.signup-button__spacing {
+  margin-top: 20px;
+}

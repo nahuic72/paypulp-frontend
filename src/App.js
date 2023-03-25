@@ -30,7 +30,7 @@ const checkForToken = async () => {
   try {
     const response = await axios.get(url, {
       headers: {
-        Authorization: token,
+        Authorization: "gsjhgkj",
       },
     })
 
