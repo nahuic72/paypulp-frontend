@@ -3,9 +3,9 @@ import useLogin from 'Hooks/useLogin'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-const FormLogin = ({ isOnGateway, setBuyerToken }) => {
+const FormLogin = ({ setBuyerToken }) => {
   const navigate = useNavigate()
-  const { onSubmit } = useLogin(isOnGateway, setBuyerToken)
+  const { onSubmit } = useLogin(setBuyerToken)
   const { register, handleSubmit } = useForm({
     mode: 'onTouched',
     defaultValues: {
