@@ -19,8 +19,7 @@ const useGateway = (sellerInfo) => {
 
         canAffordPurschase(funds, payMets)
 
-        const res = await postTransaction(transactionInfo, buyerToken)
-        console.log('postTrans', res)
+        const res = await postTransaction(sellerInfo, buyerToken)
         const addTransInfo = {
           ...transactionInfo,
           transactionUuid: res.transactionUuid,
@@ -51,7 +50,7 @@ const useGateway = (sellerInfo) => {
 
   const getPayMets = async (token) => {
     try {
-      const res = await PaymentMethods.getPayMetsGateway(token)
+      const res = await PaymentMethods.getPayMets(token)
       return res.data
     } catch (error) {
       handleError()

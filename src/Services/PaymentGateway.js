@@ -5,19 +5,6 @@ class Gateway {
     return { headers: { Authorization: token } }
   }
 
-  static getProduct = async (productUuid) => {
-    const token = localStorage.getItem('token')
-    const config = this.getConfig(token)
-    // try {
-    const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/private/product/${productUuid}`,
-      config,
-    )
-    if (res.status === 200) {
-      return res
-    }
-  }
-
   static confirmPayment = async (transactionInfo) => {
     const token = localStorage.getItem('token')
     const config = this.getConfig(token)

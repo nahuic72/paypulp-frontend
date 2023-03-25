@@ -1,5 +1,5 @@
 export const isObjEmpty = (obj) => {
-  if (!obj) throw new Error('Not an object')
+  // if (!obj) throw new Error('Not an object')
   return Object.keys(obj).length === 0
 }
 
