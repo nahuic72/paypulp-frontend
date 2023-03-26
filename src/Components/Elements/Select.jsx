@@ -1,9 +1,12 @@
 import 'Styles/Inputs.css'
+import Gender from './Icons/Gender'
 
 const Select = ({ name, label, register, validationType, categories, selected }) => {
   return (
     <div className="text-input__wrapper">
-      <label htmlFor={name}>{label}</label>
+      <label className="text-aux" htmlFor={name}>
+        {label}
+      </label>
       <select
         className="select-input__wrapper"
         type="text"
@@ -15,6 +18,7 @@ const Select = ({ name, label, register, validationType, categories, selected })
           </option>
         ))}
       </select>
+      <Gender />
     </div>
   )
 }
