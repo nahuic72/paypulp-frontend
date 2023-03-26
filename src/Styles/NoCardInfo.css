@@ -1,0 +1,7 @@
+.no-card__text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 30px 52px 15px 47px;
+    line-height: 20px;
+  }

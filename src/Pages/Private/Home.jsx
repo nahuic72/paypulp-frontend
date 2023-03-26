@@ -1,4 +1,5 @@
 import CardsArray from 'Components/Elements/CardsArray'
+import NoCardInfo from 'Components/Elements/NoCardInfo'
 import HomeActions from 'Components/Home/HomeActions'
 import HomeFunds from 'Components/Home/HomeFunds'
 import HomeHeader from 'Components/Home/HomeHeader'
@@ -19,9 +20,19 @@ const Home = () => {
   return (
     <>
       <HomeHeader name={userCtxt.firstName} />
-      <HomeFunds funds={userCtxt.funds} />
-      <CardsArray funds={userCtxt.funds} payMets={payMets} rotate={rotate} position={position} />
-      <HomeActions accountType={userCtxt.accountType} />
+      <section className="home-container">
+        <HomeFunds funds={userCtxt.funds} />
+        {!payMets && <NoCardInfo />}
+        {payMets && (
+          <CardsArray
+            funds={userCtxt.funds}
+            payMets={payMets}
+            rotate={rotate}
+            position={position}
+          />
+        )}
+        <HomeActions accountType={userCtxt.accountType} />
+      </section>
     </>
   )
 }
