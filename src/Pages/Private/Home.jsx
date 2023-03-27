@@ -22,8 +22,9 @@ const Home = () => {
       <HomeHeader name={userCtxt.firstName} />
       <section className="home-container">
         <HomeFunds funds={userCtxt.funds} />
-        {!payMets && <NoCardInfo />}
-        {payMets && (
+        {payMets.length === 0 ? (
+          <NoCardInfo />
+        ) : (
           <CardsArray
             funds={userCtxt.funds}
             payMets={payMets}
