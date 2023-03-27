@@ -85,3 +85,18 @@ input:-webkit-autofill:focus {
   border: none;
   outline: none;
 }
+
+
+select {
+  background-color: var(--bg);
+  color: var(--white);
+}
+
+select:focus {
+  outline: 2px solid var(--secondary);
+  border-radius: var(--radius);
+}
+
+.select-input__wrapper {
+  width: 80%;
+}
