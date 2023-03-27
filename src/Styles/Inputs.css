@@ -1,6 +1,7 @@
 .text-input__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 9px 21px 9px 16px;
   width: 100%;
   border: 2px solid var(--primary);
@@ -60,19 +61,42 @@
   font: var(--text-h3);
 }
 
-
 .text-input__error {
   color: red;
   font-size: 13px;
+}
+
+.fake-input__currency {
+  color: var(--white);
+  padding: 0 .5rem 0 0;
 }
 
 /* overrides style change on autocomplete */
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 50px var(--bg) inset;
   -webkit-text-fill-color: var(--white);
+  border: none;
+  outline: none;
 }
 
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 50px var(--bg) inset;
   -webkit-text-fill-color: var(--white);
+  border: none;
+  outline: none;
+}
+
+
+select {
+  background-color: var(--bg);
+  color: var(--white);
+}
+
+select:focus {
+  outline: 2px solid var(--secondary);
+  border-radius: var(--radius);
+}
+
+.select-input__wrapper {
+  width: 80%;
 }

@@ -1,10 +1,7 @@
 import FakeTextInput from 'Components/Elements/FakeTextInput'
-import FundsInput from 'Components/Elements/FundsInput'
-import TextInput from 'Components/Elements/TextInput'
-import React from 'react'
 
-const HomeFunds = () => {
-  const funds = '0 €'
+const HomeFunds = ({ funds }) => {
+  // const funds = '0 €'
   return (
     <div className="home-funds">
       <FakeTextInput label="Saldo actual" value={funds} isDisabled={false} />
