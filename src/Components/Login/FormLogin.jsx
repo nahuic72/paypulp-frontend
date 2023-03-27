@@ -29,7 +29,7 @@ const FormLogin = ({ setBuyerToken }) => {
           <button className="btn-text-only">Olvide mi contraseña</button>
         </div>
         <div className="login-form__buttons">
-          <button className="btn btn-solid btn-long" onClick={handleSubmit}>
+          <button className="login-form__login-btn btn btn-solid btn-long" onClick={handleSubmit}>
             Iniciar Sesión
           </button>
           <button className="login-form__register-btn btn btn-text-only" onClick={goToRegister}>
