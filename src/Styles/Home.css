@@ -1,3 +1,10 @@
+.home-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .home-header {
   margin: 10px 0 0 0;
   padding: 0 0 5px 0;
@@ -59,7 +66,7 @@
 
 .home-actions__bottom-btns {
   display: flex;
-  padding: 25px 0 0 0;
+  padding: 25px 0 90px 0;
 }
 
 .home-actions__bottom-btn {
@@ -73,3 +80,5 @@
   gap: 6px;
   padding: 9px 14px 4px 14px;
 }
+
+
