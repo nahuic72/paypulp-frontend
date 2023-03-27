@@ -23,23 +23,20 @@
   height: fit-content;
 }
 
-.checkbox-input__wrapper {
-  display: flex;
-  gap: 0.5rem;
+.text-input__error {
+  color: red;
+  font-size: 13px;
 }
 
-.select-input__wrapper {
-  border: transparent;
-  width: 100%;
-  position: relative;
+
+/* fake input */
+.fake-input__currency {
+  color: var(--white);
+  padding: 0 .5rem 0 0;
 }
 
-.select-inout__options {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
+/* funds input */
 .funds-input__wrapper {
   display: flex;
   padding: 0 1rem;
@@ -61,15 +58,7 @@
   font: var(--text-h3);
 }
 
-.text-input__error {
-  color: red;
-  font-size: 13px;
-}
 
-.fake-input__currency {
-  color: var(--white);
-  padding: 0 .5rem 0 0;
-}
 
 /* overrides style change on autocomplete */
 input:-webkit-autofill {
@@ -87,6 +76,14 @@ input:-webkit-autofill:focus {
 }
 
 
+/* checkbox */
+.checkbox-input__wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+/* select elements */
 select {
   background-color: var(--bg);
   color: var(--white);
@@ -98,5 +95,46 @@ select:focus {
 }
 
 .select-input__wrapper {
+  border: transparent;
   width: 80%;
+  position: relative;
 }
+
+.select-inout__options {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+/* normal radio buttons */
+.radio-input {
+  appearance: none;
+  background-color: #ffffff00;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.25em;
+  height: 1.25em;
+  border: 0.15em solid currentColor;
+  border-radius: 100%;
+  display: grid;
+  place-content: center;
+}
+
+
+.radio-input::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--primary);
+}
+
+.radio-input:checked::before {
+  transform: scale(0.7);
+} 
+
+
