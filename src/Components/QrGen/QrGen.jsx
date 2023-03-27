@@ -20,13 +20,23 @@ const QrGen = ({ checkoutType }) => {
 
   return (
     <div className="qr-gen">
-      <div className="qr-gen__input-wrapper">
-        <FundsInput label="€" handleChange={handleChange} />
-        <div className="qr-gen__text-aux text-aux">Ingresa el monto a cobrar</div>
-      </div>
-      <h3 className="qr-gen__call-text">
-        Pídele a tu cliente que escanee el código QR y siga las instrucciones
-      </h3>
+      {checkoutType === 'fixed' && (
+        <>
+          <div className="qr-gen__input-wrapper">
+            <FundsInput label="€" handleChange={handleChange} />
+            <div className="qr-gen__text-aux text-aux">Ingresa el monto a cobrar</div>
+          </div>
+          <h3 className="qr-gen__call-text">
+            Pídele a tu cliente que escanee el código QR y siga las instrucciones
+          </h3>
+        </>
+      )}
+      {checkoutType === 'donate' && (
+        <div className="qr-gen__donate-amount-wrapper">
+          <h3>Comparte este código con tu público y pídeles que lo escaneen con Paypulp.</h3>
+          <h3>Podrán elegir qué donación hacer.</h3>
+        </div>
+      )}
       <div style={{ height: 'auto', margin: '0 auto', minWidth: 60, maxWidth: 194, width: '100%' }}>
         <QRCode
           size={256}
