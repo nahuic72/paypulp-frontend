@@ -4,10 +4,25 @@ import { useNavigate } from 'react-router'
 
 const PayWithQR = () => {
   const navigate = useNavigate()
+
+    const camStyle = {
+    position: 'relative',
+    top: '38%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  }
+
+  const previewStyle = {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  }
+
+
   return (
     <>
       <TextHeader text={'Paga con QR'} />
-      <div style={{ height: '100vh' }}>
+      <div style={camStyle}>
         <QrReader
           onResult={(result, error) => {
             if (result) {
@@ -18,7 +33,8 @@ const PayWithQR = () => {
               console.info(error)
             }
           }}
-          style={{ width: '100%', height: '100%;' }}
+          /*  style={previewStyle} */
+          style={previewStyle}
         />
       </div>
     </>
