@@ -16,6 +16,7 @@ import Signup from 'Pages/Public/Signup'
 import Home from 'Pages/Private/Home'
 import QrGenPage from 'Pages/Private/QrGenPage'
 import AddSellerInfoPage from 'Pages/Private/AddSellerInfoPage'
+import PayWithQR from 'Pages/Private/PayWithQR'
 
 const checkForToken = async () => {
   const token = sessionStorage.getItem('token')
@@ -90,6 +91,7 @@ const router = createBrowserRouter(
           element={<AddSellerInfoPage />}
           loader={passParams}
         />
+        <Route path="paywithqr" element={<PayWithQR />} />
         <Route
           path="qrgen/:accountType/:checkoutType"
           element={<QrGenPage />}
