@@ -3,7 +3,7 @@ import CardImageFunds from './CardImageFunds'
 
 const CardsArray = ({ payMets = null, funds, rotate, position = null }) => {
   return (
-    <div className="home-cards" onClick={rotate}>
+    <div className={`home-cards home-cards__${payMets.length}`} onClick={rotate}>
       {payMets.length >= 3 && (
         <CardImage position={position?.[2]} cardInfo={payMets?.[1]} gradient="card__gradient--2" />
       )}
