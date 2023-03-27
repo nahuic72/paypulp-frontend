@@ -5,8 +5,15 @@ import useGateway from 'Hooks/useGateway'
 
 const GatewayPage = () => {
   const sellerInfo = useLoaderData()
-  const { buyerToken, setBuyerToken, funds, payMets, isSubmit, confirmTransaction } =
-    useGateway(sellerInfo)
+  const {
+    buyerToken,
+    setBuyerToken,
+    funds,
+    payMets,
+    isSubmit,
+    confirmTransaction,
+    handleRadioDonation,
+  } = useGateway(sellerInfo)
 
   return (
     <>
@@ -17,6 +24,7 @@ const GatewayPage = () => {
           payMets={payMets}
           funds={funds}
           confirmTransaction={confirmTransaction}
+          handleRadioDonation={handleRadioDonation}
         />
       )}
     </>
