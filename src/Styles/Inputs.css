@@ -1,6 +1,7 @@
 .text-input__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 9px 21px 9px 16px;
   width: 100%;
   border: 2px solid var(--primary);
@@ -60,10 +61,14 @@
   font: var(--text-h3);
 }
 
-
 .text-input__error {
   color: red;
   font-size: 13px;
+}
+
+.fake-input__currency {
+  color: var(--white);
+  padding: 0 .5rem 0 0;
 }
 
 /* overrides style change on autocomplete */

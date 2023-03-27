@@ -40,6 +40,7 @@
 .home-funds__transactions-btn {
   background-color: var(--bg);
   padding: 0 5px 0 0;
+  display: flex;
 }
 
 .home-cards {
