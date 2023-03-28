@@ -27,7 +27,7 @@ const PayWithQR = () => {
       <TextHeader text={'Paga con QR'} navigate={goBack} />
       <div style={camStyle}>
         <QrReader
-          onResult={(result, error) => {
+          onResult={(result) => {
             if (result) {
               const url = result.text.match(/^https?:\/\/[^/]+(\/[^?#]*)/i)[1]
               navigate(url)

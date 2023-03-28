@@ -5,7 +5,7 @@ import QRCode from 'react-qr-code'
 import { useNavigate } from 'react-router'
 import 'Styles/QrGen.css'
 
-const QrGen = ({ checkoutType }) => {
+const QrGen = ({ checkoutType, goToHome }) => {
   const navigate = useNavigate()
   const { userCtxt } = useContext(userContext)
   const [write, setWrite] = useState('')
@@ -57,7 +57,7 @@ const QrGen = ({ checkoutType }) => {
         />
       </div>
       <button className="btn btn-solid btn-short">Kit Imprimible</button>
-      <button className="btn text-only-btn qr-gen__cancel-btn" onClick={() => navigate('/home')}>
+      <button className="btn text-only-btn qr-gen__cancel-btn" onClick={goToHome}>
         Cancelar
       </button>
     </div>
