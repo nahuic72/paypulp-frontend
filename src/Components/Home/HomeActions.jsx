@@ -15,9 +15,15 @@ const HomeActions = ({ accountType }) => {
     navigate('/paywithqr')
   }
 
+  const goToAddPaymentMethod = () => {
+    navigate('/addpaymentmethod')
+  }
+
   return (
     <div className="home-actions">
-      <button className="btn btn-long btn-solid">Añadir método de pago</button>
+      <button className="btn btn-long btn-solid" onClick={goToAddPaymentMethod}>
+        Añadir método de pago
+      </button>
       <div className="home-actions__bottom-btns">
         <div className="home-actions__bottom-btn" onClick={payWithQR}>
           <QRmini2 />
