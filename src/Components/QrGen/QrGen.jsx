@@ -5,7 +5,7 @@ import QRCode from 'react-qr-code'
 import { useNavigate } from 'react-router'
 import 'Styles/QrGen.css'
 
-const QrGen = ({ checkoutType }) => {
+const QrGen = ({ checkoutType, goToHome }) => {
   const navigate = useNavigate()
   const { userCtxt } = useContext(userContext)
   const [write, setWrite] = useState('')
@@ -37,7 +37,14 @@ const QrGen = ({ checkoutType }) => {
           <h3>Podrán elegir qué donación hacer.</h3>
         </div>
       )}
-      <div style={{ height: 'auto', margin: '0 auto', minWidth: 60, maxWidth: 194, width: '100%' }}>
+      <div
+        style={{
+          height: 'auto',
+          margin: '0 auto',
+          minWidth: 60,
+          maxWidth: 194,
+          width: '100%',
+        }}>
         <QRCode
           size={256}
           style={{
@@ -45,14 +52,12 @@ const QrGen = ({ checkoutType }) => {
             maxWidth: '100%',
             width: '100%',
           }}
-          bgColor="#363b3e"
-          fgColor="#2bffd9"
           value={write}
           viewBox={`0 0 256 256`}
         />
       </div>
       <button className="btn btn-solid btn-short">Kit Imprimible</button>
-      <button className="btn text-only-btn qr-gen__cancel-btn" onClick={() => navigate('/home')}>
+      <button className="btn text-only-btn qr-gen__cancel-btn" onClick={goToHome}>
         Cancelar
       </button>
     </div>
