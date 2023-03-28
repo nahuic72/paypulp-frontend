@@ -82,12 +82,24 @@ const AddSellerForm = () => {
         <h3 className="add-seller__radio-title">¿Qué tipo de negocio tienes?</h3>
 
         <div className="add-seller__radio-option">
-          <input type="radio" id="noLocation" value="noLocation" {...register('hasLocation')} />
+          <input
+            className="radio-input"
+            type="radio"
+            id="noLocation"
+            value="noLocation"
+            {...register('hasLocation')}
+          />
           <label htmlFor="noLocation">Sin negocio a la calle</label>
         </div>
 
         <div className="add-seller__radio-option">
-          <input type="radio" id="withLocation" value="withLocation" {...register('hasLocation')} />
+          <input
+            className="radio-input"
+            type="radio"
+            id="withLocation"
+            value="withLocation"
+            {...register('hasLocation')}
+          />
           <label htmlFor="withLocation">Con negocio a la calle</label>
         </div>
       </div>

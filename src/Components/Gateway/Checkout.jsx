@@ -4,9 +4,10 @@ import CardsArray from 'Components/Elements/CardsArray'
 import TextHeader from 'Components/Elements/TextHeader'
 import { useState } from 'react'
 import 'Styles/Checkout.css'
+import DonateAmounts from './CheckoutInfo/DonateAmounts'
 import FixAmount from './CheckoutInfo/FixAmount'
 
-const Checkout = ({ sellerInfo, payMets, funds, confirmTransaction }) => {
+const Checkout = ({ sellerInfo, payMets, funds, confirmTransaction, handleRadioDonation }) => {
   const { checkoutType, totalAmount } = sellerInfo
   const [isDisabled, setIsDisabled] = useState(false)
   const [position, setPosition] = useState(['cards__first', 'cards__second', 'cards__third'])
@@ -30,6 +31,9 @@ const Checkout = ({ sellerInfo, payMets, funds, confirmTransaction }) => {
       <TextHeader text="Completa el checkout" />
       <div className="checkout__wrapper">
         {checkoutType === 'fixed' && <FixAmount totalAmount={totalAmount} />}
+        {checkoutType === 'donate' && (
+          <DonateAmounts totalAmount={totalAmount} handleRadioDonation={handleRadioDonation} />
+        )}
 
         {payMets.length > 0 ? (
           <CardsArray payMets={payMets} funds={funds} rotate={rotate} position={position} />

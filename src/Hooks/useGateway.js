@@ -33,6 +33,14 @@ const useGateway = (sellerInfo) => {
     }
   }, [buyerToken])
 
+  const handleRadioDonation = (value) => {
+    console.log(value)
+    setTransactionInfo({
+      ...transactionInfo,
+      totalAmount: value,
+    })
+  }
+
   const getBuyerInfo = async () => {
     const { funds } = await getUserFunds(buyerToken)
     const payMets = await getPayMets(buyerToken)
@@ -136,6 +144,7 @@ const useGateway = (sellerInfo) => {
     transactionInfo,
     payMets,
     confirmTransaction,
+    handleRadioDonation,
   }
 }
 
