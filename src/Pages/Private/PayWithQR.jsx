@@ -32,10 +32,6 @@ const PayWithQR = () => {
               const url = result.text.match(/^https?:\/\/[^/]+(\/[^?#]*)/i)[1]
               navigate(url)
             }
-
-            if (error) {
-              console.info(error)
-            }
           }}
           style={previewStyle}
         />
