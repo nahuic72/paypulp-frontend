@@ -1,13 +1,17 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: node_ejemplo
 
 on:
   push:
     branches: [ "dev" ]
   pull_request:
     branches: [ "dev" ]
+
+env:
+  AZURE_WEBAPP_NAME: josecitoweb1   # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
 
 jobs:
   build:
@@ -16,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x,19.x]
+        node-version: [18.x]
         
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
@@ -31,3 +35,30 @@ jobs:
     - run: npm run build --if-present
       env:
         CI: ""
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: node-app
+        path: .
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v3
+      with:
+        name: node-app
+    - name: 'Deploy to Azure WebApp'
+      id: deploy-to-webapp 
+      uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
+      with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - env:
+        OUTPUT1: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      run: echo "$OUTPUT1"
