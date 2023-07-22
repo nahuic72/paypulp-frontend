@@ -57,8 +57,9 @@ jobs:
       with:
         name: node-app
         path: release.zip
-    - name: unzip artifact for deployment
-      run: unzip ./release.zip
+    - run: | 
+        ls -la >directorio.dat
+        cat directorio.dat
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
       uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
